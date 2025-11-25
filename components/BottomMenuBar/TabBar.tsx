@@ -24,20 +24,20 @@ function TabBar({ hidden }: TabBarProps) {
   return (
     <motion.div
       animate={hidden ? { opacity: 0, display: "none" } : {}}
-      transition={{delay:0.3}}
+      transition={{ delay: 0.3 }}
       className="absolute flex h-full w-full items-center justify-center gap-5"
     >
       <motion.div
         animate={hidden ? { opacity: 0 } : {}}
         transition={{ duration: 0.3, delay: 0.4 }}
-        className="px z-40 flex h-full flex-1 items-center justify-around rounded-2xl bg-black"
+        className="px z-40 blur-in- flex h-full flex-1 items-center justify-around rounded-2xl border border-[#1C1C1E]/20 bg-zinc-900/50 backdrop-blur-xs"
       >
         <motion.button
           onClick={() => {
             setTab("add");
             router.push("/dashboard");
           }}
-          className={`rounded-2xl ${tab === "add" && "bg-violet-700/60"} p-4 transition-colors`}
+          className={`rounded-2xl ${tab === "add" && "bg-zinc-200"} p-4 transition-colors`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -47,7 +47,7 @@ function TabBar({ hidden }: TabBarProps) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-5 text-white"
+            className="size-5 text-black"
           >
             <path
               strokeLinecap="round"
@@ -61,7 +61,7 @@ function TabBar({ hidden }: TabBarProps) {
             setTab("settings");
             router.push("/settings");
           }}
-          className={`rounded-2xl ${tab === "settings" && "bg-violet-700/60"} p-4 transition-colors`}
+          className={`rounded-2xl ${tab === "settings" && "bg-zinc-200"} p-4 transition-colors`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -69,7 +69,7 @@ function TabBar({ hidden }: TabBarProps) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="size-5 text-white"
+            className="size-5 text-black"
           >
             <path
               fillRule="evenodd"
@@ -84,7 +84,7 @@ function TabBar({ hidden }: TabBarProps) {
             setTab("exe");
             router.push("/exe");
           }}
-          className={`rounded-2xl ${tab === "exe" && "bg-violet-700/60"} p-4 transition-colors`}
+          className={`rounded-2xl ${tab === "exe" && "bg-zinc-200"} p-4 transition-colors`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -92,7 +92,7 @@ function TabBar({ hidden }: TabBarProps) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            className="size-4 text-white"
+            className="size-4 text-black"
           >
             <path
               fillRule="evenodd"
