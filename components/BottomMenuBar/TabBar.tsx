@@ -9,7 +9,7 @@ interface TabBarProps {
 
 function TabBar({ hidden }: TabBarProps) {
   const [tab, setTab] = useState<string>("add");
-  const [isPlayerVisible,setIsPlayerVisible] = useState<boolean>(true) 
+  const [isPlayerVisible, setIsPlayerVisible] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,7 +29,11 @@ function TabBar({ hidden }: TabBarProps) {
       transition={{ delay: 0.3 }}
       className="absolute flex h-full w-full items-center justify-center gap-5"
     >
-      <motion.div initial={{}} animate={isPlayerVisible ? {display : "none"} : {}} className="flex h-full w-full items-center justify-center gap-5">
+      <motion.div
+        initial={{}}
+        animate={isPlayerVisible ? { display: "none" } : {}}
+        className="flex h-full w-full items-center justify-center gap-5"
+      >
         <motion.div
           // animate={hidden ? { opacity: 0 } : {}}
           // transition={{ duration: 0.3, delay: 0.4 }}
@@ -106,7 +110,7 @@ function TabBar({ hidden }: TabBarProps) {
           </motion.button>
         </motion.div>
         <motion.button
-        onClick={()=>setIsPlayerVisible(true)}
+          onClick={() => setIsPlayerVisible(true)}
           // animate={hidden ? { x: -100, opacity: 0 } : {}}
           // transition={{ duration: 0.3 }}
           className="flex size-16 items-center justify-center rounded-full bg-black shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]"
@@ -134,8 +138,9 @@ function TabBar({ hidden }: TabBarProps) {
       </motion.div>
 
       <motion.div
-        initial={{ display: "none" }} animate={isPlayerVisible ? {display : "flex"} : {}}
-        className="flex h-full w-full items-center px-2 bg-black"
+        initial={{ display: "none" }}
+        animate={isPlayerVisible ? { display: "flex" } : {}}
+        className="flex h-full w-full items-center bg-black px-2"
       >
         {/* Image */}
         <div className="ml-1 flex h-full w-12 items-center justify-center">
@@ -167,10 +172,10 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-rewind-backward-15"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-rewind-backward-15"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M8 20h2a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-2v-3h3" />
@@ -186,7 +191,7 @@ function TabBar({ hidden }: TabBarProps) {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                class="icon icon-tabler icons-tabler-filled icon-tabler-player-pause"
+                className="icon icon-tabler icons-tabler-filled icon-tabler-player-pause"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M9 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z" />
@@ -201,10 +206,10 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-rewind-forward-15"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-rewind-forward-15"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M17 9l3 -3l-3 -3" />
@@ -221,10 +226,10 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-clock-play"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-clock-play"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 7v5l2 2" />
@@ -240,10 +245,10 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-repeat-off"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-repeat-off"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M4 12v-3c0 -1.336 .873 -2.468 2.08 -2.856m3.92 -.144h10m-3 -3l3 3l-3 3" />
@@ -259,10 +264,10 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-share-3"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-share-3"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M13 4v4c-6.575 1.028 -9.02 6.788 -10 12c-.037 .206 5.384 -5.962 10 -6v4l8 -7l-8 -7z" />
@@ -286,9 +291,9 @@ function TabBar({ hidden }: TabBarProps) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="icon icon-tabler icons-tabler-outline icon-tabler-speakerphone"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -302,7 +307,10 @@ function TabBar({ hidden }: TabBarProps) {
 
         {/* Main Div 3 */}
         <div className="flex w-12 items-center justify-center px-1">
-          <button onClick={()=>setIsPlayerVisible(false)} className="rounded-full bg-white p-1.5 text-black">
+          <button
+            onClick={() => setIsPlayerVisible(false)}
+            className="rounded-full bg-white p-1.5 text-black"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -310,9 +318,9 @@ function TabBar({ hidden }: TabBarProps) {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="icon icon-tabler icons-tabler-outline icon-tabler-table-share"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
