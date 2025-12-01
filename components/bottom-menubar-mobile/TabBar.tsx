@@ -37,7 +37,7 @@ function TabBar({ hidden }: TabBarProps) {
         <motion.div
           // animate={hidden ? { opacity: 0 } : {}}
           // transition={{ duration: 0.3, delay: 0.4 }}
-          className="px z-40 flex h-full flex-1 items-center justify-around rounded-2xl border border-[#1C1C1E]/20 bg-zinc-900/50 backdrop-blur-xs"
+          className="px z-40 flex h-full flex-1 items-center justify-around rounded-2xl border border-[#1C1C1E]/20 bg-black backdrop-blur-xs"
         >
           <motion.button
             onClick={() => {
@@ -109,11 +109,12 @@ function TabBar({ hidden }: TabBarProps) {
             </svg>
           </motion.button>
         </motion.div>
+
         <motion.button
           onClick={() => setIsPlayerVisible(true)}
           // animate={hidden ? { x: -100, opacity: 0 } : {}}
           // transition={{ duration: 0.3 }}
-          className="flex size-16 items-center justify-center rounded-full bg-black shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]"
+          className="flex size-16 items-center justify-center rounded-full bg-black shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),10px_10px_30px_4px_rgba(45,78,255,0.15)]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -137,6 +138,7 @@ function TabBar({ hidden }: TabBarProps) {
         </motion.button>
       </motion.div>
 
+      {/* Stripe 2 */}
       <motion.div
         initial={{ display: "none" }}
         animate={isPlayerVisible ? { display: "flex" } : {}}

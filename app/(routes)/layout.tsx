@@ -1,8 +1,8 @@
 "use client";
 
-
-import MainBar from "@/components/BottomMenuBar/MainBar";
+import MainBar from "@/components/bottom-menubar-mobile/MainBar";
 import { ScrollProvider, useScrollRef } from "./ScrollContext";
+import MobileNavbar from "@/components/mobile-navbar/main-mobile-navbar";
 
 function RoutesContent({ children }: { children: React.ReactNode }) {
   const scrollRef = useScrollRef();
@@ -27,13 +27,10 @@ export default function RoutesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
-
- 
-
   return (
     <ScrollProvider>
-     <MainBar />
+      <MainBar />
+      <MobileNavbar />
       <RoutesContent>{children}</RoutesContent>
     </ScrollProvider>
   );
