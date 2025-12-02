@@ -1,9 +1,9 @@
-import {motion} from "motion/react"
+import { motion } from "motion/react";
 import Image from "next/image";
 
 export default function MobileUpperMenuControls() {
   return (
-    <div className="bg-black-500 flex h-full items-center bg-black py-1 rounded-3xl w-6/12 justify-between px-2 border border-zinc-800">
+    <div className="bg-black-500 flex h-full w-6/12 items-center justify-between rounded-3xl border border-zinc-800 bg-black px-2 py-1">
       <div className="flex size-7 items-center justify-center rounded-full border border-zinc-600/50 bg-black">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,15 +41,15 @@ export default function MobileUpperMenuControls() {
           <path d="M19.08 5.61a1 1 0 0 1 1.31 -.53c.257 .108 .505 .21 .769 .314a2 2 0 0 1 1.114 2.479l-.056 .146l-2.298 5.374a1 1 0 0 1 -1.878 -.676l.04 -.11l2.296 -5.371l-.366 -.148l-.402 -.167a1 1 0 0 1 -.53 -1.312z" />
         </svg>
       </div>
-       <motion.div className="relative size-6 overflow-hidden rounded-full bg-purple-300">
-            <Image
-              src={
-                "https://lh3.googleusercontent.com/a/ACg8ocKqMq4Z4r6e2EUbMPY9BXU8FwbLm7aaQm4OqEY_eWKJUEkYGL1x=s576-c-no"
-              }
-              fill={true}
-              alt="image-thumbnail"
-            />
-          </motion.div>
+      <motion.div className="relative size-6 overflow-hidden rounded-full bg-purple-300">
+        <Image
+          src={
+            "https://lh3.googleusercontent.com/a/ACg8ocKqMq4Z4r6e2EUbMPY9BXU8FwbLm7aaQm4OqEY_eWKJUEkYGL1x=s576-c-no"
+          }
+          fill={true}
+          alt="image-thumbnail"
+        />
+      </motion.div>
     </div>
   );
 }
