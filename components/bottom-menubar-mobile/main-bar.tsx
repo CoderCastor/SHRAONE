@@ -4,8 +4,8 @@ import { useScrollRef } from "@/app/(routes)/ScrollContext";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import TabBar from "./TabBar";
-import InfoBar from "./InfoBar";
+import TabBar from "./app-bar";
+import InfoBar from "./info-bar";
 
 function MainBar() {
   const pathname = usePathname();

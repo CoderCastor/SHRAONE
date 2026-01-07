@@ -1,6 +1,6 @@
 "use client";
 
-import MainBar from "@/components/bottom-menubar-mobile/MainBar";
+import MainBar from "@/components/bottom-menubar-mobile/main-bar";
 import { ScrollProvider, useScrollRef } from "./ScrollContext";
 import MobileNavbar from "@/components/mobile-navbar/main-mobile-navbar";
 
