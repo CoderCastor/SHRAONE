@@ -13,8 +13,9 @@ export function MobileAudioPlayer({
 }: MobileAudioPlayerProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, zIndex: -40 }}
-      animate={isPlayerVisible ? { opacity: 100 } : {}}
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0}}
       className="flex h-full w-full items-center bg-black px-2"
     >
       {/* Image */}

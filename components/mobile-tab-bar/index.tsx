@@ -28,8 +28,9 @@ export function MobileTabBar({
 
   return (
     <motion.div
-      initial={{}}
-      animate={{}}
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0}}
       className="absolute flex h-full w-full items-center justify-center gap-5"
     >
       <motion.div
