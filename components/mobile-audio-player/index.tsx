@@ -8,7 +8,6 @@ interface MobileAudioPlayerProps {
 }
 
 export function MobileAudioPlayer({
-  isPlayerVisible,
   setIsPlayerVisible,
 }: MobileAudioPlayerProps) {
   return (

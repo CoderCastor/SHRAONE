@@ -51,7 +51,12 @@ export const ModelName = {
   Account: 'Account',
   Session: 'Session',
   User: 'User',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Monologue: 'Monologue',
+  Episodes: 'Episodes',
+  Played: 'Played',
+  likedMonologue: 'likedMonologue',
+  Comment: 'Comment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -103,7 +108,8 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
-  image: 'image'
+  image: 'image',
+  liked_categories: 'liked_categories'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -116,6 +122,66 @@ export const VerificationTokenScalarFieldEnum = {
 } as const
 
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+export const MonologueScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdBy: 'createdBy',
+  playedCount: 'playedCount',
+  likeCount: 'likeCount',
+  commentCount: 'commentCount',
+  categories: 'categories',
+  visibility: 'visibility',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type MonologueScalarFieldEnum = (typeof MonologueScalarFieldEnum)[keyof typeof MonologueScalarFieldEnum]
+
+
+export const EpisodesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  number: 'number',
+  script: 'script',
+  audioUrl: 'audioUrl',
+  monologueId: 'monologueId',
+  status: 'status'
+} as const
+
+export type EpisodesScalarFieldEnum = (typeof EpisodesScalarFieldEnum)[keyof typeof EpisodesScalarFieldEnum]
+
+
+export const PlayedScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  createdAt: 'createdAt'
+} as const
+
+export type PlayedScalarFieldEnum = (typeof PlayedScalarFieldEnum)[keyof typeof PlayedScalarFieldEnum]
+
+
+export const LikedMonologueScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  createdAt: 'createdAt'
+} as const
+
+export type LikedMonologueScalarFieldEnum = (typeof LikedMonologueScalarFieldEnum)[keyof typeof LikedMonologueScalarFieldEnum]
+
+
+export const CommentScalarFieldEnum = {
+  id: 'id',
+  comment: 'comment',
+  monologueId: 'monologueId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
 export const SortOrder = {

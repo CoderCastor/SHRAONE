@@ -36,3 +36,28 @@ export type User = Prisma.UserModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Monologue
+ * 
+ */
+export type Monologue = Prisma.MonologueModel
+/**
+ * Model Episodes
+ * 
+ */
+export type Episodes = Prisma.EpisodesModel
+/**
+ * Model Played
+ * 
+ */
+export type Played = Prisma.PlayedModel
+/**
+ * Model likedMonologue
+ * 
+ */
+export type likedMonologue = Prisma.likedMonologueModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel

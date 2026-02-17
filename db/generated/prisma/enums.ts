@@ -8,7 +8,42 @@
 * 🟢 You can import this file directly.
 */
 
+export const VISIBILITY = {
+  PRIVATE: 'PRIVATE',
+  PUBLIC: 'PUBLIC',
+  LINK: 'LINK'
+} as const
+
+export type VISIBILITY = (typeof VISIBILITY)[keyof typeof VISIBILITY]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const STATUS = {
+  PENDING: 'PENDING',
+  GENERATING_AUDIO: 'GENERATING_AUDIO',
+  ERROR: 'ERROR',
+  READY: 'READY'
+} as const
+
+export type STATUS = (typeof STATUS)[keyof typeof STATUS]
+
+
+export const categories = {
+  Motivation: 'Motivation',
+  Science: 'Science',
+  Dramatic: 'Dramatic',
+  Comedy: 'Comedy',
+  Soliloquy: 'Soliloquy',
+  Interior: 'Interior',
+  Action: 'Action',
+  Serio_comic: 'Serio_comic',
+  Narrative: 'Narrative',
+  Storytelling: 'Storytelling',
+  Classical: 'Classical',
+  Contemporary: 'Contemporary',
+  Villain_Speech: 'Villain_Speech',
+  Rant: 'Rant',
+  Direct_Address: 'Direct_Address',
+  Historical: 'Historical'
+} as const
+
+export type categories = (typeof categories)[keyof typeof categories]

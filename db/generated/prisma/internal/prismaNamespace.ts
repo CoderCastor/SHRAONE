@@ -392,7 +392,12 @@ export const ModelName = {
   Account: 'Account',
   Session: 'Session',
   User: 'User',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Monologue: 'Monologue',
+  Episodes: 'Episodes',
+  Played: 'Played',
+  likedMonologue: 'likedMonologue',
+  Comment: 'Comment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "account" | "session" | "user" | "verificationToken"
+    modelProps: "account" | "session" | "user" | "verificationToken" | "monologue" | "episodes" | "played" | "likedMonologue" | "comment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -708,6 +713,376 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Monologue: {
+      payload: Prisma.$MonologuePayload<ExtArgs>
+      fields: Prisma.MonologueFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MonologueFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MonologueFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        findFirst: {
+          args: Prisma.MonologueFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MonologueFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        findMany: {
+          args: Prisma.MonologueFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>[]
+        }
+        create: {
+          args: Prisma.MonologueCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        createMany: {
+          args: Prisma.MonologueCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MonologueCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>[]
+        }
+        delete: {
+          args: Prisma.MonologueDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        update: {
+          args: Prisma.MonologueUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        deleteMany: {
+          args: Prisma.MonologueDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MonologueUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MonologueUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>[]
+        }
+        upsert: {
+          args: Prisma.MonologueUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonologuePayload>
+        }
+        aggregate: {
+          args: Prisma.MonologueAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMonologue>
+        }
+        groupBy: {
+          args: Prisma.MonologueGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MonologueGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MonologueCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MonologueCountAggregateOutputType> | number
+        }
+      }
+    }
+    Episodes: {
+      payload: Prisma.$EpisodesPayload<ExtArgs>
+      fields: Prisma.EpisodesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EpisodesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EpisodesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        findFirst: {
+          args: Prisma.EpisodesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EpisodesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        findMany: {
+          args: Prisma.EpisodesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>[]
+        }
+        create: {
+          args: Prisma.EpisodesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        createMany: {
+          args: Prisma.EpisodesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EpisodesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>[]
+        }
+        delete: {
+          args: Prisma.EpisodesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        update: {
+          args: Prisma.EpisodesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        deleteMany: {
+          args: Prisma.EpisodesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EpisodesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EpisodesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>[]
+        }
+        upsert: {
+          args: Prisma.EpisodesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EpisodesPayload>
+        }
+        aggregate: {
+          args: Prisma.EpisodesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEpisodes>
+        }
+        groupBy: {
+          args: Prisma.EpisodesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EpisodesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EpisodesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EpisodesCountAggregateOutputType> | number
+        }
+      }
+    }
+    Played: {
+      payload: Prisma.$PlayedPayload<ExtArgs>
+      fields: Prisma.PlayedFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlayedFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlayedFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        findFirst: {
+          args: Prisma.PlayedFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlayedFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        findMany: {
+          args: Prisma.PlayedFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>[]
+        }
+        create: {
+          args: Prisma.PlayedCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        createMany: {
+          args: Prisma.PlayedCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlayedCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>[]
+        }
+        delete: {
+          args: Prisma.PlayedDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        update: {
+          args: Prisma.PlayedUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlayedDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlayedUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlayedUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlayedUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayedPayload>
+        }
+        aggregate: {
+          args: Prisma.PlayedAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlayed>
+        }
+        groupBy: {
+          args: Prisma.PlayedGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlayedGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlayedCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlayedCountAggregateOutputType> | number
+        }
+      }
+    }
+    likedMonologue: {
+      payload: Prisma.$likedMonologuePayload<ExtArgs>
+      fields: Prisma.likedMonologueFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.likedMonologueFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.likedMonologueFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        findFirst: {
+          args: Prisma.likedMonologueFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.likedMonologueFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        findMany: {
+          args: Prisma.likedMonologueFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>[]
+        }
+        create: {
+          args: Prisma.likedMonologueCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        createMany: {
+          args: Prisma.likedMonologueCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.likedMonologueCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>[]
+        }
+        delete: {
+          args: Prisma.likedMonologueDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        update: {
+          args: Prisma.likedMonologueUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        deleteMany: {
+          args: Prisma.likedMonologueDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.likedMonologueUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.likedMonologueUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>[]
+        }
+        upsert: {
+          args: Prisma.likedMonologueUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$likedMonologuePayload>
+        }
+        aggregate: {
+          args: Prisma.LikedMonologueAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLikedMonologue>
+        }
+        groupBy: {
+          args: Prisma.likedMonologueGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LikedMonologueGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.likedMonologueCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LikedMonologueCountAggregateOutputType> | number
+        }
+      }
+    }
+    Comment: {
+      payload: Prisma.$CommentPayload<ExtArgs>
+      fields: Prisma.CommentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CommentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CommentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        findFirst: {
+          args: Prisma.CommentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CommentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        findMany: {
+          args: Prisma.CommentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        create: {
+          args: Prisma.CommentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        createMany: {
+          args: Prisma.CommentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CommentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        delete: {
+          args: Prisma.CommentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        update: {
+          args: Prisma.CommentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        deleteMany: {
+          args: Prisma.CommentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CommentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CommentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        upsert: {
+          args: Prisma.CommentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        aggregate: {
+          args: Prisma.CommentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateComment>
+        }
+        groupBy: {
+          args: Prisma.CommentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CommentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CommentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CommentCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -780,7 +1155,8 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
-  image: 'image'
+  image: 'image',
+  liked_categories: 'liked_categories'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -793,6 +1169,66 @@ export const VerificationTokenScalarFieldEnum = {
 } as const
 
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+export const MonologueScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdBy: 'createdBy',
+  playedCount: 'playedCount',
+  likeCount: 'likeCount',
+  commentCount: 'commentCount',
+  categories: 'categories',
+  visibility: 'visibility',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type MonologueScalarFieldEnum = (typeof MonologueScalarFieldEnum)[keyof typeof MonologueScalarFieldEnum]
+
+
+export const EpisodesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  number: 'number',
+  script: 'script',
+  audioUrl: 'audioUrl',
+  monologueId: 'monologueId',
+  status: 'status'
+} as const
+
+export type EpisodesScalarFieldEnum = (typeof EpisodesScalarFieldEnum)[keyof typeof EpisodesScalarFieldEnum]
+
+
+export const PlayedScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  createdAt: 'createdAt'
+} as const
+
+export type PlayedScalarFieldEnum = (typeof PlayedScalarFieldEnum)[keyof typeof PlayedScalarFieldEnum]
+
+
+export const LikedMonologueScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  createdAt: 'createdAt'
+} as const
+
+export type LikedMonologueScalarFieldEnum = (typeof LikedMonologueScalarFieldEnum)[keyof typeof LikedMonologueScalarFieldEnum]
+
+
+export const CommentScalarFieldEnum = {
+  id: 'id',
+  comment: 'comment',
+  monologueId: 'monologueId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -864,6 +1300,48 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'categories[]'
+ */
+export type ListEnumcategoriesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'categories[]'>
+    
+
+
+/**
+ * Reference to a field of type 'categories'
+ */
+export type EnumcategoriesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'categories'>
+    
+
+
+/**
+ * Reference to a field of type 'VISIBILITY'
+ */
+export type EnumVISIBILITYFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VISIBILITY'>
+    
+
+
+/**
+ * Reference to a field of type 'VISIBILITY[]'
+ */
+export type ListEnumVISIBILITYFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VISIBILITY[]'>
+    
+
+
+/**
+ * Reference to a field of type 'STATUS'
+ */
+export type EnumSTATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'STATUS'>
+    
+
+
+/**
+ * Reference to a field of type 'STATUS[]'
+ */
+export type ListEnumSTATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'STATUS[]'>
     
 
 
@@ -971,6 +1449,11 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   user?: Prisma.UserOmit
   verificationToken?: Prisma.VerificationTokenOmit
+  monologue?: Prisma.MonologueOmit
+  episodes?: Prisma.EpisodesOmit
+  played?: Prisma.PlayedOmit
+  likedMonologue?: Prisma.likedMonologueOmit
+  comment?: Prisma.CommentOmit
 }
 
 /* Types for Logging */

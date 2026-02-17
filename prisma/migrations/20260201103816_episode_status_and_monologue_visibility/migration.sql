@@ -1,0 +1,21 @@
+-- CreateEnum
+CREATE TYPE "VISIBILITY" AS ENUM ('PRIVATE', 'PUBLIC', 'LINK');
+
+-- CreateEnum
+CREATE TYPE "STATUS" AS ENUM ('PENDING', 'ERROR', 'READY');
+
+-- AlterTable
+ALTER TABLE "episodes" ADD COLUMN     "status" "STATUS" NOT NULL DEFAULT 'PENDING',
+ALTER COLUMN "id" SET DEFAULT 1,
+ALTER COLUMN "title" DROP NOT NULL,
+ALTER COLUMN "script" DROP NOT NULL,
+ALTER COLUMN "audio_url" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "monologues" ADD COLUMN     "visibility" "VISIBILITY" NOT NULL DEFAULT 'PRIVATE',
+ALTER COLUMN "played_count" DROP NOT NULL,
+ALTER COLUMN "like_count" DROP NOT NULL,
+ALTER COLUMN "comment_count" DROP NOT NULL;
+
+-- AddForeignKey
+ALTER TABLE "monologues" ADD CONSTRAINT "monologues_created_by_fkey" FOREIGN KEY ("created_by") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

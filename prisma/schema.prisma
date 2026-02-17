@@ -45,13 +45,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id               String           @id @default(cuid())
+  name             String?
+  email            String?          @unique
+  emailVerified    DateTime?        @map("email_verified")
+  image            String?
+  accounts         Account[]
+  sessions         Session[]
+  played           Played[]
+  likes            likedMonologue[]
+  comments         Comment[]
+  liked_categories categories[]
+  monologues       Monologue[]
 
   @@map("users")
 }
@@ -63,4 +68,111 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+model Monologue {
+  id           String     @id @default(cuid())
+  title        String
+  createdBy    String     @map("created_by")
+  playedCount  Int?       @default(0) @map("played_count")
+  likeCount    Int?       @default(0) @map("like_count")
+  commentCount Int?       @default(0) @map("comment_count")
+  categories   categories
+  playedby     Played[]
+  visibility   VISIBILITY @default(PRIVATE)
+  thumbnailUrl String     @default("PENDING") @map("thumbnail_url")
+
+  user User @relation(fields: [createdBy], references: [id])
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  likedMonologues likedMonologue[]
+  episodes        Episodes[]
+  comments        Comment[]
+
+  @@unique([title, createdBy])
+  @@map("monologues")
+}
+
+enum VISIBILITY {
+  PRIVATE
+  PUBLIC
+  LINK
+}
+
+model Episodes {
+  id          String  @id @default(cuid())
+  title       String?
+  number      Int
+  script      String?
+  audioUrl    String? @map("audio_url")
+  monologueId String  @map("monologue_id")
+  status      STATUS  @default(PENDING)
+
+  monologue Monologue @relation(fields: [monologueId], references: [id], onDelete: Cascade)
+
+  @@unique([monologueId, number])
+  @@map("episodes")
+}
+
+enum STATUS {
+  PENDING
+  GENERATING_AUDIO
+  ERROR
+  READY
+}
+
+model Played {
+  id          String @id @default(cuid())
+  userId      String @map("user_id")
+  monologueId String @map("monologue_id")
+
+  monologue Monologue @relation(fields: [monologueId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@map("played_by")
+}
+
+model likedMonologue {
+  id          String @id @default(cuid())
+  userId      String @map("user_id")
+  monologueId String @map("monologue_id")
+
+  monologue Monologue @relation(fields: [monologueId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@map("liked_monologues")
+}
+
+model Comment {
+  id          String @id @default(cuid())
+  comment     String
+  monologueId String @map("monologue_id")
+  userId      String
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  user      User      @relation(fields: [userId], references: [id])
+  monologue Monologue @relation(fields: [monologueId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+enum categories {
+  Motivation
+  Science
+  Dramatic
+  Comedy
+  Soliloquy
+  Interior
+  Action
+  Serio_comic
+  Narrative
+  Storytelling
+  Classical
+  Contemporary
+  Villain_Speech
+  Rant
+  Direct_Address
+  Historical
 }

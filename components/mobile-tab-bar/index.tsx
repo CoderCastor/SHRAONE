@@ -34,8 +34,6 @@ export function MobileTabBar({
       className="absolute flex h-full w-full items-center justify-center gap-5"
     >
       <motion.div
-        // animate={hidden ? { opacity: 0 } : {}}
-        // transition={{ duration: 0.3, delay: 0.4 }}
         className="px z-40 flex h-full flex-1 items-center justify-around rounded-2xl border border-[#1C1C1E]/20 bg-black backdrop-blur-xs"
       >
         <motion.button

@@ -45,6 +45,7 @@ export type UserCountAggregateOutputType = {
   email: number
   emailVerified: number
   image: number
+  liked_categories: number
   _all: number
 }
 
@@ -71,6 +72,7 @@ export type UserCountAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
+  liked_categories?: true
   _all?: true
 }
 
@@ -152,6 +154,7 @@ export type UserGroupByOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
+  liked_categories: $Enums.categories[]
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -181,8 +184,13 @@ export type UserWhereInput = {
   email?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  played?: Prisma.PlayedListRelationFilter
+  likes?: Prisma.LikedMonologueListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
+  monologues?: Prisma.MonologueListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -191,8 +199,13 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  liked_categories?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
+  played?: Prisma.PlayedOrderByRelationAggregateInput
+  likes?: Prisma.likedMonologueOrderByRelationAggregateInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
+  monologues?: Prisma.MonologueOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -204,8 +217,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  played?: Prisma.PlayedListRelationFilter
+  likes?: Prisma.LikedMonologueListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
+  monologues?: Prisma.MonologueListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -214,6 +232,7 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  liked_categories?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -228,6 +247,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
 }
 
 export type UserCreateInput = {
@@ -236,8 +256,13 @@ export type UserCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -246,8 +271,13 @@ export type UserUncheckedCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -256,8 +286,13 @@ export type UserUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -266,8 +301,13 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -276,6 +316,7 @@ export type UserCreateManyInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
 }
 
 export type UserUpdateManyMutationInput = {
@@ -284,6 +325,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -292,11 +334,20 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
 }
 
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type EnumcategoriesNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.categories[] | Prisma.ListEnumcategoriesFieldRefInput<$PrismaModel> | null
+  has?: $Enums.categories | Prisma.EnumcategoriesFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.categories[] | Prisma.ListEnumcategoriesFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.categories[] | Prisma.ListEnumcategoriesFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -305,6 +356,7 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  liked_categories?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -351,8 +403,73 @@ export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
 }
 
+export type UserCreateliked_categoriesInput = {
+  set: $Enums.categories[]
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type UserUpdateliked_categoriesInput = {
+  set?: $Enums.categories[]
+  push?: $Enums.categories | $Enums.categories[]
+}
+
+export type UserCreateNestedOneWithoutMonologuesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMonologuesInput, Prisma.UserUncheckedCreateWithoutMonologuesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMonologuesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMonologuesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMonologuesInput, Prisma.UserUncheckedCreateWithoutMonologuesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMonologuesInput
+  upsert?: Prisma.UserUpsertWithoutMonologuesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMonologuesInput, Prisma.UserUpdateWithoutMonologuesInput>, Prisma.UserUncheckedUpdateWithoutMonologuesInput>
+}
+
+export type UserCreateNestedOneWithoutPlayedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlayedInput, Prisma.UserUncheckedCreateWithoutPlayedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlayedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPlayedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPlayedInput, Prisma.UserUncheckedCreateWithoutPlayedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlayedInput
+  upsert?: Prisma.UserUpsertWithoutPlayedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPlayedInput, Prisma.UserUpdateWithoutPlayedInput>, Prisma.UserUncheckedUpdateWithoutPlayedInput>
+}
+
+export type UserCreateNestedOneWithoutLikesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
+  upsert?: Prisma.UserUpsertWithoutLikesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLikesInput, Prisma.UserUpdateWithoutLikesInput>, Prisma.UserUncheckedUpdateWithoutLikesInput>
+}
+
+export type UserCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.UserUpsertWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -361,7 +478,12 @@ export type UserCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -370,7 +492,12 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -395,7 +522,12 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -404,7 +536,12 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -413,7 +550,12 @@ export type UserCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -422,7 +564,12 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -447,7 +594,12 @@ export type UserUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -456,7 +608,300 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMonologuesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMonologuesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMonologuesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMonologuesInput, Prisma.UserUncheckedCreateWithoutMonologuesInput>
+}
+
+export type UserUpsertWithoutMonologuesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMonologuesInput, Prisma.UserUncheckedUpdateWithoutMonologuesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMonologuesInput, Prisma.UserUncheckedCreateWithoutMonologuesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMonologuesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMonologuesInput, Prisma.UserUncheckedUpdateWithoutMonologuesInput>
+}
+
+export type UserUpdateWithoutMonologuesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMonologuesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPlayedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPlayedInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPlayedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlayedInput, Prisma.UserUncheckedCreateWithoutPlayedInput>
+}
+
+export type UserUpsertWithoutPlayedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPlayedInput, Prisma.UserUncheckedUpdateWithoutPlayedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPlayedInput, Prisma.UserUncheckedCreateWithoutPlayedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPlayedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPlayedInput, Prisma.UserUncheckedUpdateWithoutPlayedInput>
+}
+
+export type UserUpdateWithoutPlayedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPlayedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutLikesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutLikesInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutLikesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+}
+
+export type UserUpsertWithoutLikesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLikesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
+}
+
+export type UserUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCommentsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+}
+
+export type UserUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+}
+
+export type UserUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -467,11 +912,19 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 export type UserCountOutputType = {
   accounts: number
   sessions: number
+  played: number
+  likes: number
+  comments: number
+  monologues: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  played?: boolean | UserCountOutputTypeCountPlayedArgs
+  likes?: boolean | UserCountOutputTypeCountLikesArgs
+  comments?: boolean | UserCountOutputTypeCountCommentsArgs
+  monologues?: boolean | UserCountOutputTypeCountMonologuesArgs
 }
 
 /**
@@ -498,6 +951,34 @@ export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.SessionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPlayedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlayedWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.likedMonologueWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMonologuesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MonologueWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -505,8 +986,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  liked_categories?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  played?: boolean | Prisma.User$playedArgs<ExtArgs>
+  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
+  monologues?: boolean | Prisma.User$monologuesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -516,6 +1002,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  liked_categories?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -524,6 +1011,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  liked_categories?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -532,12 +1020,17 @@ export type UserSelectScalar = {
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  liked_categories?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "liked_categories", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  played?: boolean | Prisma.User$playedArgs<ExtArgs>
+  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
+  monologues?: boolean | Prisma.User$monologuesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -548,6 +1041,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
+    played: Prisma.$PlayedPayload<ExtArgs>[]
+    likes: Prisma.$likedMonologuePayload<ExtArgs>[]
+    comments: Prisma.$CommentPayload<ExtArgs>[]
+    monologues: Prisma.$MonologuePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -555,6 +1052,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     emailVerified: Date | null
     image: string | null
+    liked_categories: $Enums.categories[]
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -951,6 +1449,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  played<T extends Prisma.User$playedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$playedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlayedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  likes<T extends Prisma.User$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$likedMonologuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  monologues<T extends Prisma.User$monologuesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$monologuesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MonologuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -985,6 +1487,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'DateTime'>
   readonly image: Prisma.FieldRef<"User", 'String'>
+  readonly liked_categories: Prisma.FieldRef<"User", 'categories[]'>
 }
     
 
@@ -1418,6 +1921,102 @@ export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.played
+ */
+export type User$playedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Played
+   */
+  select?: Prisma.PlayedSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Played
+   */
+  omit?: Prisma.PlayedOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlayedInclude<ExtArgs> | null
+  where?: Prisma.PlayedWhereInput
+  orderBy?: Prisma.PlayedOrderByWithRelationInput | Prisma.PlayedOrderByWithRelationInput[]
+  cursor?: Prisma.PlayedWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlayedScalarFieldEnum | Prisma.PlayedScalarFieldEnum[]
+}
+
+/**
+ * User.likes
+ */
+export type User$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the likedMonologue
+   */
+  select?: Prisma.likedMonologueSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the likedMonologue
+   */
+  omit?: Prisma.likedMonologueOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.likedMonologueInclude<ExtArgs> | null
+  where?: Prisma.likedMonologueWhereInput
+  orderBy?: Prisma.likedMonologueOrderByWithRelationInput | Prisma.likedMonologueOrderByWithRelationInput[]
+  cursor?: Prisma.likedMonologueWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikedMonologueScalarFieldEnum | Prisma.LikedMonologueScalarFieldEnum[]
+}
+
+/**
+ * User.comments
+ */
+export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
+}
+
+/**
+ * User.monologues
+ */
+export type User$monologuesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Monologue
+   */
+  select?: Prisma.MonologueSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Monologue
+   */
+  omit?: Prisma.MonologueOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MonologueInclude<ExtArgs> | null
+  where?: Prisma.MonologueWhereInput
+  orderBy?: Prisma.MonologueOrderByWithRelationInput | Prisma.MonologueOrderByWithRelationInput[]
+  cursor?: Prisma.MonologueWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MonologueScalarFieldEnum | Prisma.MonologueScalarFieldEnum[]
 }
 
 /**

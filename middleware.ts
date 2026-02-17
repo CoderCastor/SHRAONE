@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  // Just forward the request, don't use Prisma here
+export async function middleware(request: NextRequest) {
+
   return NextResponse.next()
 }
 
