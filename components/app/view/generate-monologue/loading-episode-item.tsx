@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 export const LoadingMonologueItem = ({
   loadingNumber,
   number,
@@ -22,38 +22,58 @@ export const LoadingMonologueItem = ({
     { id: 7, title: "Adding Finishing Touches" },
     { id: 8, title: "Almost Ready Now" },
     { id: 9, title: "Preparing For Playback" },
-    { id: 10, title: "Done!" },
+    { id: 10, title: "Loading now..." },
   ];
   return (
-    <li
-      // variants={listItem}
-      className="flex items-center justify-start gap-2 rounded-2xl bg-emerald-50 px-2 py-2 text-[12px] hover:bg-emerald-100"
-    >
-      <div className="flex h-6 w-7 items-center justify-center rounded-full bg-emerald-300 text-emerald-800">
-        {number}
-      </div>
-      <div className="flex w-full flex-col justify-center gap-0.5">
-        <div className="flex justify-between text-[10px] text-emerald-900">
-          <p className="animate-pulse transition-all duration-300">
-            {
-              loadingTitles[
-                loadingNumber < 10
-                  ? 0
-                  : loadingNumber == 100
-                    ? 10
-                    : Number(loadingNumber.toString().split("")[0])
-              ].title
-            }
-          </p>{" "}
-          <div>{loadingNumber}%</div>
+    <AnimatePresence>
+      <motion.li 
+        initial={{
+        opacity: 0,
+        filter: "blur(2px)",
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      }}
+      exit={{
+        opacity: 0,
+        y: -10,
+        filter: "blur(2px)",
+      }}
+      transition={{
+        duration : 0.1,
+        delay:0.2 
+      }}
+        // variants={listItem}
+        className="flex items-center justify-start gap-2 rounded-2xl bg-emerald-50 px-2 py-2 text-[12px] hover:bg-emerald-100"
+      >
+        <div className="flex h-6 w-7 items-center justify-center rounded-full bg-emerald-300 text-emerald-800">
+          {number}
         </div>
-        <motion.div
-          style={{
-            width: `${loadingNumber}%`,
-          }}
-          className="generating-line h-[3px] w-full rounded-lg bg-emerald-600 transition-all duration-500"
-        ></motion.div>
-      </div>
-    </li>
+        <div className="flex w-full flex-col justify-center gap-0.5">
+          <div className="flex justify-between text-[10px] text-emerald-900">
+            <p className="animate-pulse transition-all duration-300">
+              {
+                loadingTitles[
+                  loadingNumber < 10
+                    ? 0
+                    : loadingNumber == 100
+                      ? 10
+                      : Number(loadingNumber.toString().split("")[0])
+                ].title
+              }
+            </p>{" "}
+            <div>{loadingNumber}%</div>
+          </div>
+          <motion.div
+            style={{
+              width: `${loadingNumber}%`,
+            }}
+            className="generating-line h-[3px] w-full rounded-lg bg-emerald-600 transition-all duration-500"
+          ></motion.div>
+        </div>
+      </motion.li>
+    </AnimatePresence>
   );
 };

@@ -5,9 +5,11 @@ import { Bars } from "react-loader-spinner";
 export const EpisodeStackUL = ({
   generating,
   children,
+  handleGenerateNextEpisode
 }: {
   generating: boolean;
   children: React.ReactNode;
+  handleGenerateNextEpisode : () => void
 }) => {
   const container = {
     hidden: { opacity: 0 },
@@ -29,7 +31,7 @@ export const EpisodeStackUL = ({
           </h3>
           <div className="flex justify-end">
             <button
-              onClick={() => {}}
+              onClick={handleGenerateNextEpisode}
               className="text-purple-white/10 flex items-center justify-center gap-2 rounded-lg bg-zinc-100 px-4 py-1.5 text-[10px] text-nowrap text-purple-950 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.8)_inset] text-shadow-sm"
             >
               Generate Next

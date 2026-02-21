@@ -1,9 +1,15 @@
+import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { PodcastResponse } from "@/types/monologue";
 import { NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = auth(async (request) => {
   try {
+    if (!request.auth)
+      return NextResponse.json(
+        { message: "Not authenticated" },
+        { status: 401 },
+      );
     const monologues = await prisma.monologue.findMany({
       include: {
         user: {
@@ -32,6 +38,9 @@ export const GET = async () => {
           },
         },
       },
+      where: {
+        createdBy: request.auth.user?.id,
+      },
     });
 
     const modifiedResponse = monologues.map((item) => {
@@ -41,7 +50,7 @@ export const GET = async () => {
         return { ...item, isLiked: false };
       }
     });
-    
+
     return NextResponse.json({
       success: true,
       data: modifiedResponse,
@@ -51,6 +60,6 @@ export const GET = async () => {
       success: false,
       message: "Something went wrong",
     });
-    console.log(e);
+   
   }
-};
+});

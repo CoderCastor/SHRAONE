@@ -21,6 +21,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/app",
+        destination: "/app/trending",
+        permanent : true
+      },
+    ];
+  },
 };
 
 export default nextConfig;

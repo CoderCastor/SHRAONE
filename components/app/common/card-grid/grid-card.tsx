@@ -9,9 +9,13 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import thumb from "@/public/thumbnail.png";
-import { ActionDispatch, Dispatch } from "react";
+import { ActionDispatch, Dispatch, SetStateAction } from "react";
 import { PodcastType } from "@/types/monologue";
-import {motion} from "motion/react"
+import { motion } from "motion/react";
+import {
+  useUpdateTrendingMonologueDislikeMutation,
+  useUpdateTrendingMonologueLikeMutation,
+} from "@/lib/services/apiSlice";
 export interface GridCardProps {
   thumbnail_image_url?: string;
   title: string;
@@ -22,8 +26,10 @@ export interface GridCardProps {
   played_count: number;
   like_count: number;
   post_by: string;
-  setFullScreen : Dispatch<React.SetStateAction<null | PodcastType>>
-  item : PodcastType
+  setFullScreen: Dispatch<React.SetStateAction<null | PodcastType>>;
+  item: PodcastType;
+  setFixZindexCardId: Dispatch<SetStateAction<null | string>>;
+  fixZindexCardId: string | null;
 }
 
 export const GridCard = ({
@@ -37,12 +43,26 @@ export const GridCard = ({
   like_count,
   post_by,
   setFullScreen,
-  item
+  item,
+  setFixZindexCardId,
+  fixZindexCardId,
 }: GridCardProps) => {
+  const [likeMonologue, {}] = useUpdateTrendingMonologueLikeMutation();
+  const [dislikeMonologue, {}] = useUpdateTrendingMonologueDislikeMutation();
+
   return (
-    <motion.div layoutId={`card-${item.id}`} className="border-grey-400 relative grid min-h-[140px] grid-cols-8 overflow-hidden rounded-lg border bg-white p-2 inset-shadow-sm inset-shadow-red-500/10">
-      <motion.div layoutId={`card-image-${item.id}`} className="relative col-span-3 hidden items-center justify-center overflow-hidden rounded-lg md:flex">
-       <Image
+    <motion.div
+      style={{
+        zIndex: fixZindexCardId && fixZindexCardId === item.id ? 50 : 0,
+      }}
+      layoutId={`card-${item.id}`}
+      className="border-grey-400 relative grid min-h-[140px] grid-cols-8 overflow-hidden rounded-lg border bg-white p-2 inset-shadow-sm inset-shadow-red-500/10"
+    >
+      <motion.div
+        layoutId={`card-image-${item.id}`}
+        className="relative col-span-3 hidden h-32 w-20 items-center justify-center overflow-hidden rounded-lg md:flex md:w-28 lg:w-27"
+      >
+        <Image
           quality={40}
           src={thumbnail_image_url == "PENDING" ? "" : thumbnail_image_url}
           alt="monologue-image"
@@ -50,23 +70,26 @@ export const GridCard = ({
         />
       </motion.div>
       <div className="col-span-8 flex flex-col gap-2 pt-1 pl-2 md:col-span-5">
-        <motion.h3 layoutId={`card-title-${item.id}`} className="truncate overflow-hidden text-sm tracking-tight text-zinc-600">
+        <motion.h3
+          layoutId={`card-title-${item.id}`}
+          className="truncate overflow-hidden text-sm tracking-tight text-zinc-600"
+        >
           {title}
         </motion.h3>
         <div className="flex gap-2">
-          <div className="relative hidden h-4 w-4 overflow-hidden rounded-full md:block">
+          <motion.div layoutId={`user-image-${item.id}`} className="relative hidden h-4 w-4 overflow-hidden rounded-full md:block">
             <Image
               src={creater_profile as string}
               fill={true}
               alt="image-thumbnail"
             />
-          </div>
-          <p className="text-500-300 truncate overflow-hidden text-[10px] tracking-tight text-zinc-700">
+          </motion.div>
+          <motion.p layoutId={`user-name-${item.id}`} className="text-500-300 truncate overflow-hidden text-[10px] tracking-tight text-zinc-700">
             {creater}
-          </p>
+          </motion.p>
         </div>
 
-        <div className="flex gap-2">
+        <motion.div layoutId={`control-buttons-${item.id}`}className="flex gap-2">
           <button className="flex items-center justify-center gap-1 rounded-2xl bg-red-500 px-2 py-1 text-[8px] font-semibold text-white">
             <IconPlayerPlayFilled stroke={2} size={10} />
             Play
@@ -77,15 +100,31 @@ export const GridCard = ({
           </button>
           <button className="flex items-center justify-center gap-1 rounded-2xl text-[8px] text-zinc-400">
             {isLiked ? (
-              <IconHeartFilled stroke={2} size={18} color="red" />
+              <IconHeartFilled
+                stroke={2}
+                size={18}
+                color="#F05A5E"
+                onClick={() => dislikeMonologue(item.id)}
+              />
             ) : (
-              <IconHeartFilled stroke={2} size={18} />
-            )}
+              <IconHeartFilled
+                stroke={2}
+                size={18}
+                color="#e6e6e6"
+                onClick={() => likeMonologue(item.id)}
+              />
+            )}  
           </button>
-          <button onClick={()=>setFullScreen(item)} className="flex items-center justify-center gap-1 rounded-full bg-zinc-300 px-2 py-1 text-[8px] text-white">
+          <button
+            onClick={() => {
+              setFullScreen(item);
+              setFixZindexCardId(item.id);
+            }}
+            className="flex items-center justify-center gap-1 rounded-full bg-zinc-300 px-2 py-1 text-[8px] text-white"
+          >
             <IconListDetails stroke={2} size={10} />
           </button>
-        </div>
+        </motion.div>
 
         <div
           className={cn(
@@ -97,15 +136,15 @@ export const GridCard = ({
           <p className="text-[8px]">Motivation</p>
           <p className="text-[8px]">Motivation</p>
         </div>
-        <div className="flex justify-around text-[10px] text-zinc-600/80">
+        <motion.div layoutId={`stats-buttons-${item.id}`} className="flex justify-around text-[10px] text-zinc-600/80">
           <div className="flex items-center gap-1 text-violet-900">
             <IconBrandGooglePodcasts size={12} /> <p>{played_count}</p>
           </div>
           <div className={cn("flex items-center gap-1", "text-red-600")}>
-            <IconHeartFilled size={12} /> <p>{like_count}</p>
+            <IconHeart size={12} /> <p>{like_count}</p>
           </div>
           <p className="text-violet-900">{item.createdAt.split("T")[0]}</p>
-        </div>
+        </motion.div>
       </div>
 
       {/* <Image

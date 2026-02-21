@@ -9,7 +9,7 @@ export const OptionBar = ({
 }) => {
   return (
     <div
-      className={cn("flex h-8 items-center justify-center rounded-2xl bg-zinc-50 px-4 text-zinc-800", shadow1, classname)}
+      className={cn("flex items-center justify-center rounded-2xl  px-4 text-zinc-800", classname)}
     >
       {children}
     </div>

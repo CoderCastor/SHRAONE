@@ -28,6 +28,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </StoreProvider>
+        
       </body>
     </html>
   );

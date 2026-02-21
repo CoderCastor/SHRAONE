@@ -1,10 +1,7 @@
 import { RemoveScrollBar } from "react-remove-scroll-bar";
 import { cn } from "@/lib/utils";
 
-
-export const GridCardBox = ({children}:{children : React.ReactNode}) => {
-  
-
+export const GridCardBox = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={cn(
@@ -12,9 +9,7 @@ export const GridCardBox = ({children}:{children : React.ReactNode}) => {
       )}
     >
       <RemoveScrollBar />
-      <div className="grid grid-cols-2 gap-2 px-2">
-        {children}
-      </div>
+      <div className="grid grid-cols-2 gap-2 px-2">{children}</div>
     </div>
   );
 };

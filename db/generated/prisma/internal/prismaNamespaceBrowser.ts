@@ -109,6 +109,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
+  credit: 'credit',
   liked_categories: 'liked_categories'
 } as const
 

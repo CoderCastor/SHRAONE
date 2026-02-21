@@ -1,7 +1,8 @@
-"use client"
-import { GridCardBox } from "./common/card-grid/grid-card-box";
+
+import { RecommendedMonologues } from "@/components/app/view/recommended-monologues";
 
 
-export const DisplayCard = () => {
-  return <></>;
+
+export default function  Page() {
+  return <RecommendedMonologues />;
 };

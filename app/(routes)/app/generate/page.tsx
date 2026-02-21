@@ -4,6 +4,7 @@ import { ViewLayout } from "@/components/layout/view";
 import {
   api,
   useGenerateNewMonologueMutation,
+  useGenerateNextEpisodeMutation,
   useGetMonologueByIdQuery,
   useGetMonologueEpisodeStatusQuery,
 } from "@/lib/services/apiSlice";
@@ -25,7 +26,7 @@ export default function Page() {
   const [pollingIntervalAndEpisodeId, setPollingIntervalAndEpisodeId] =
     useState<{ number: number; id: string } | null>(null);
   const [loadingNumber, setLoadingNumber] = useState<number>(0);
-  const [loadingNumberSpeed, setLoadingNumberSpeed] = useState<number>(400);
+  const [loadingNumberSpeed, setLoadingNumberSpeed] = useState<number>(350);
   const [generating, setGenerating] = useState(false);
   const [scope, animate] = useAnimate();
   const [input, setInput] = useState<string>("");
@@ -41,6 +42,14 @@ export default function Page() {
       isSuccess: isGenerateMonologueMutationSuccess,
     },
   ] = useGenerateNewMonologueMutation();
+
+  const [
+    generateNextEpisodeMutation,
+    {
+      data: episodeDataFromGenerateNextEpisodeMutation,
+      isSuccess: isGenerateNextEpisodeMutationSuccess,
+    },
+  ] = useGenerateNextEpisodeMutation();
 
   //Query
   const {
@@ -80,13 +89,12 @@ export default function Page() {
   useEffect(() => {
     if (monologueDataFromGenerateNewMonologueMutation?.success) {
       getMonologue(monologueDataFromGenerateNewMonologueMutation.res.id);
-      console.log("Calling getMonologueDatawithID");
     } else {
       animate(".loader", {
         display: "none",
       });
-      console.log(monologueDataFromGenerateNewMonologueMutation?.error);
     }
+    dispatch(api.util.invalidateTags([{ type: "creditBalance" }]));
   }, [
     isGenerateMonologueMutationSuccess,
     getMonologue,
@@ -94,6 +102,7 @@ export default function Page() {
     monologueDataFromGenerateNewMonologueMutation?.success,
     monologueDataFromGenerateNewMonologueMutation?.error,
     animate,
+    dispatch,
   ]);
 
   const StartPageTransitionAnimations = useCallback(async () => {
@@ -126,12 +135,6 @@ export default function Page() {
           setGenerating(true);
         });
       }
-
-      console.log(
-        "getMonologueDatawithID Data : ",
-        GetMonologueByIdQueryData.data,
-        "And Episode Polling Started",
-      );
     } else {
       console.log("Failed to process");
     }
@@ -143,35 +146,30 @@ export default function Page() {
 
   const body = { idea: input };
 
-  console.log("GetMonologueByIdQueryData : ", GetMonologueByIdQueryData?.data);
-
   useEffect(() => {
     if (statusData?.data.status == "READY") {
       setPollingIntervalAndEpisodeId(null);
-      setLoadingNumberSpeed(50);
+      setLoadingNumberSpeed(40);
     }
     if (statusData?.data.monologue.thumbnailUrl != "PENDING") {
       setThumbnailURL(statusData?.data.monologue.thumbnailUrl as string);
     }
-  }, [
-    statusData?.data.status,
-    statusData?.data.monologue.thumbnailUrl,
-  ]);
+  }, [statusData?.data.status, statusData?.data.monologue.thumbnailUrl]);
+
+  const handleLoadingStateEnding = async () => {
+    await getMonologue(
+      monologueDataFromGenerateNewMonologueMutation?.res?.id,
+    ).unwrap();
+
+    setLoadingNumber(0);
+    setLoadingNumberSpeed(350);
+  };
 
   useEffect(() => {
-    if (loadingNumber == 100) {
-      setTimeout(()=>{
-        dispatch(
-        api.util.invalidateTags([
-          {
-            type: "Monologue",
-            id: monologueDataFromGenerateNewMonologueMutation?.res?.id,
-          },
-        ]),
-      );
-      },1000)
+    if (loadingNumber == 100 && statusData?.data.audioUrl) {
+      handleLoadingStateEnding();
     }
-  }, [loadingNumber,monologueDataFromGenerateNewMonologueMutation?.res?.id,dispatch]);
+  }, [isFetching]);
 
   const handleGenerateApprove = async () => {
     await animate(".ai-icon", {
@@ -180,7 +178,6 @@ export default function Page() {
     await animate(".loader", {
       display: "block",
     });
-    StartPageTransitionAnimations();
     generateMonologueMutation(body);
   };
 
@@ -210,7 +207,42 @@ export default function Page() {
     }
   }, [loadingNumber, generating]);
 
-  console.log("pollingIntervalAndEpisodeId :", pollingIntervalAndEpisodeId);
+  const handleGenerateNextEpisode = async () => {
+    await generateNextEpisodeMutation({
+      monologueId: GetMonologueByIdQueryData?.data.id as string,
+      number: (GetMonologueByIdQueryData?.data?.episodes?.length ?? 0) + 1,
+    });
+    setEpisodeText(null);
+  };
+
+  useEffect(() => {
+    if (episodeDataFromGenerateNextEpisodeMutation?.success) {
+      setLoadingNumber(0);
+      setLoadingNumberSpeed(350);
+      dispatch(
+        api.util.invalidateTags([
+          {
+            type: "Monologue",
+            id: episodeDataFromGenerateNextEpisodeMutation?.data?.id,
+          },
+        ]),
+      );
+      dispatch(
+        api.util.invalidateTags([
+          {
+            type: "creditBalance",
+          },
+        ]),
+      );
+    }
+  }, [
+    isGenerateNextEpisodeMutationSuccess,
+    dispatch,
+    episodeDataFromGenerateNextEpisodeMutation?.data?.id,
+    episodeDataFromGenerateNextEpisodeMutation?.success,
+  ]);
+
+  console.log("Redering");
 
   return (
     <ViewLayout showLayoutHeader={false}>
@@ -224,6 +256,23 @@ export default function Page() {
         )}
       </AnimatePresence>
       <motion.div
+      initial={{
+          opacity: 0,
+          filter: "blur(10px)",
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        }}
+        exit={{
+          opacity: 0,
+          y: -10,
+          filter: "blur(10px)",
+        }}
+        transition={{
+          duration: 0.3,
+        }}
         ref={scope}
         className="relative flex h-full w-full flex-col items-center justify-center gap-y-10 bg-zinc-100"
       >
@@ -264,27 +313,26 @@ export default function Page() {
                 // startGenerating={startGenerating}
               />
               {/* episode */}
-              <EpisodeStackUL generating={generating}>
+              <EpisodeStackUL
+                generating={generating}
+                handleGenerateNextEpisode={handleGenerateNextEpisode}
+              >
                 {GetMonologueByIdQueryData?.success &&
-                  GetMonologueByIdQueryData.data.episodes
-                    .filter((item) => item.status != "PENDING")
-                    .map((item) => (
+                  GetMonologueByIdQueryData.data.episodes.map((item) =>
+                    item.status != "READY" ? (
+                      <LoadingMonologueItem
+                        loadingNumber={loadingNumber}
+                        number={item.number}
+                        key={item.id}
+                      />
+                    ) : (
                       <EpisodeItem
                         key={item.id}
                         number={item.number}
-                        title={item.title}
+                        title={item.title as string}
                       />
-                    ))}
-                {pollingIntervalAndEpisodeId && (
-                  <LoadingMonologueItem
-                    loadingNumber={loadingNumber}
-                    number={
-                      pollingIntervalAndEpisodeId?.number
-                        ? pollingIntervalAndEpisodeId.number
-                        : 1
-                    }
-                  />
-                )}
+                    ),
+                  )}
               </EpisodeStackUL>
             </div>
             <div className="flex h-full min-h-0 flex-1 flex-col overflow-y-scroll">

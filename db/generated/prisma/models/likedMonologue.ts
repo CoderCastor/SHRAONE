@@ -188,6 +188,7 @@ export type likedMonologueOrderByWithRelationInput = {
 
 export type likedMonologueWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  userId_monologueId?: Prisma.likedMonologueUserIdMonologueIdCompoundUniqueInput
   AND?: Prisma.likedMonologueWhereInput | Prisma.likedMonologueWhereInput[]
   OR?: Prisma.likedMonologueWhereInput[]
   NOT?: Prisma.likedMonologueWhereInput | Prisma.likedMonologueWhereInput[]
@@ -196,7 +197,7 @@ export type likedMonologueWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"likedMonologue"> | Date | string
   monologue?: Prisma.XOR<Prisma.MonologueScalarRelationFilter, Prisma.MonologueWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id">
+}, "id" | "userId_monologueId">
 
 export type likedMonologueOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -273,6 +274,11 @@ export type LikedMonologueListRelationFilter = {
 
 export type likedMonologueOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type likedMonologueUserIdMonologueIdCompoundUniqueInput = {
+  userId: string
+  monologueId: string
 }
 
 export type likedMonologueCountOrderByAggregateInput = {

@@ -1,7 +1,5 @@
-"use client"
-import { GridCardBox } from "./common/card-grid/grid-card-box";
+import { TrendingMonologues } from "@/components/app/view/trending-monologues";
 
-
-export const DisplayCard = () => {
-  return <></>;
-};
+export default function Dashboard() {
+  return <TrendingMonologues />;
+}

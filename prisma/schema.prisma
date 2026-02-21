@@ -45,11 +45,13 @@ model Session {
 }
 
 model User {
-  id               String           @id @default(cuid())
-  name             String?
-  email            String?          @unique
-  emailVerified    DateTime?        @map("email_verified")
-  image            String?
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+
+  credit           Int              @default(10)
   accounts         Account[]
   sessions         Session[]
   played           Played[]
@@ -143,6 +145,7 @@ model likedMonologue {
   createdAt DateTime  @default(now()) @map("created_at")
 
   @@map("liked_monologues")
+  @@unique([userId,monologueId])
 }
 
 model Comment {

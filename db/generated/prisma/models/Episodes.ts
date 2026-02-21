@@ -452,14 +452,6 @@ export type EpisodesUncheckedUpdateManyWithoutMonologueNestedInput = {
   deleteMany?: Prisma.EpisodesScalarWhereInput | Prisma.EpisodesScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumSTATUSFieldUpdateOperationsInput = {
   set?: $Enums.STATUS
 }

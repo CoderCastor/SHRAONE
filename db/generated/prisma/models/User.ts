@@ -19,8 +19,18 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  credit: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  credit: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -29,6 +39,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
+  credit: number | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -37,6 +48,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
+  credit: number | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -45,10 +57,19 @@ export type UserCountAggregateOutputType = {
   email: number
   emailVerified: number
   image: number
+  credit: number
   liked_categories: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  credit?: true
+}
+
+export type UserSumAggregateInputType = {
+  credit?: true
+}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -56,6 +77,7 @@ export type UserMinAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
+  credit?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -64,6 +86,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
+  credit?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -72,6 +95,7 @@ export type UserCountAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
+  credit?: true
   liked_categories?: true
   _all?: true
 }
@@ -114,6 +138,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -144,6 +180,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -154,8 +192,11 @@ export type UserGroupByOutputType = {
   email: string | null
   emailVerified: Date | null
   image: string | null
+  credit: number
   liked_categories: $Enums.categories[]
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -184,6 +225,7 @@ export type UserWhereInput = {
   email?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  credit?: Prisma.IntFilter<"User"> | number
   liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
@@ -199,6 +241,7 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  credit?: Prisma.SortOrder
   liked_categories?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
@@ -217,6 +260,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringNullableFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  credit?: Prisma.IntFilter<"User"> | number
   liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
@@ -232,10 +276,13 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   emailVerified?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  credit?: Prisma.SortOrder
   liked_categories?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -247,6 +294,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   emailVerified?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  credit?: Prisma.IntWithAggregatesFilter<"User"> | number
   liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
 }
 
@@ -256,6 +304,7 @@ export type UserCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -271,6 +320,7 @@ export type UserUncheckedCreateInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -286,6 +336,7 @@ export type UserUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -301,6 +352,7 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -316,6 +368,7 @@ export type UserCreateManyInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
 }
 
@@ -325,6 +378,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
 }
 
@@ -334,6 +388,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
 }
 
@@ -356,7 +411,12 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  credit?: Prisma.SortOrder
   liked_categories?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  credit?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -365,6 +425,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  credit?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -373,6 +434,11 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
+  credit?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  credit?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutAccountsInput = {
@@ -409,6 +475,14 @@ export type UserCreateliked_categoriesInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type UserUpdateliked_categoriesInput = {
@@ -478,6 +552,7 @@ export type UserCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -492,6 +567,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -522,6 +598,7 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -536,6 +613,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
@@ -550,6 +628,7 @@ export type UserCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -564,6 +643,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -594,6 +674,7 @@ export type UserUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -608,6 +689,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
@@ -622,6 +704,7 @@ export type UserCreateWithoutMonologuesInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -636,6 +719,7 @@ export type UserUncheckedCreateWithoutMonologuesInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -666,6 +750,7 @@ export type UserUpdateWithoutMonologuesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -680,6 +765,7 @@ export type UserUncheckedUpdateWithoutMonologuesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -694,6 +780,7 @@ export type UserCreateWithoutPlayedInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -708,6 +795,7 @@ export type UserUncheckedCreateWithoutPlayedInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -738,6 +826,7 @@ export type UserUpdateWithoutPlayedInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -752,6 +841,7 @@ export type UserUncheckedUpdateWithoutPlayedInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -766,6 +856,7 @@ export type UserCreateWithoutLikesInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -780,6 +871,7 @@ export type UserUncheckedCreateWithoutLikesInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -810,6 +902,7 @@ export type UserUpdateWithoutLikesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -824,6 +917,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -838,6 +932,7 @@ export type UserCreateWithoutCommentsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
@@ -852,6 +947,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   email?: string | null
   emailVerified?: Date | string | null
   image?: string | null
+  credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
@@ -882,6 +978,7 @@ export type UserUpdateWithoutCommentsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
@@ -896,6 +993,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -986,6 +1084,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  credit?: boolean
   liked_categories?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -1002,6 +1101,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  credit?: boolean
   liked_categories?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -1011,6 +1111,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  credit?: boolean
   liked_categories?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -1020,10 +1121,11 @@ export type UserSelectScalar = {
   email?: boolean
   emailVerified?: boolean
   image?: boolean
+  credit?: boolean
   liked_categories?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "liked_categories", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "credit" | "liked_categories", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -1052,6 +1154,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     emailVerified: Date | null
     image: string | null
+    credit: number
     liked_categories: $Enums.categories[]
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -1487,6 +1590,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'DateTime'>
   readonly image: Prisma.FieldRef<"User", 'String'>
+  readonly credit: Prisma.FieldRef<"User", 'Int'>
   readonly liked_categories: Prisma.FieldRef<"User", 'categories[]'>
 }
     

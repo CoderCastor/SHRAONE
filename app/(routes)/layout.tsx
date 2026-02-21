@@ -4,6 +4,7 @@ import MainBar from "@/components/bottom-menubar-mobile/main-bar";
 import { ScrollProvider, useScrollRef } from "./ScrollContext";
 import MobileNavbar from "@/components/mobile-navbar/main-mobile-navbar";
 import Navbar from "@/components/navbar";
+import { SessionProvider } from "next-auth/react";
 
 function RoutesContent({ children }: { children: React.ReactNode }) {
   const scrollRef = useScrollRef();
@@ -30,10 +31,12 @@ export default function RoutesLayout({
 }) {
   return (
     <ScrollProvider>
-      <MainBar />
-      <MobileNavbar />
-      <Navbar />
-      <RoutesContent>{children}</RoutesContent>
+      <SessionProvider>
+        <MainBar />
+        <MobileNavbar />
+        <Navbar />
+        <RoutesContent>{children}</RoutesContent>
+      </SessionProvider>
     </ScrollProvider>
   );
 }

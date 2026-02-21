@@ -38,10 +38,10 @@ export const EpisodesList = ({fullScreen}:{fullScreen : null | PodcastType}) => 
                     className="flex items-center justify-start gap-2 rounded-2xl px-2 py-2 text-[12px] hover:bg-zinc-100"
                     key={idx}
                   >
-                    <div className="flex size-6 items-center justify-center rounded-full bg-red-300 text-red-800">
+                    <div className="flex shrink-0  size-6 items-center justify-center rounded-full bg-red-300 text-red-800">
                       {item.number}
                     </div>
-                    <p className="text-red-900">{item.title}</p>
+                    <p className="text-red-900 text-[10px]">{item.title}</p>
                   </motion.li>
                 ))}
               </motion.ul>
