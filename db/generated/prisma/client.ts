@@ -88,3 +88,8 @@ export type likedMonologue = Prisma.likedMonologueModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model shareable_link
+ * 
+ */
+export type shareable_link = Prisma.shareable_linkModel

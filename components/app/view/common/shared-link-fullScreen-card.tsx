@@ -19,16 +19,12 @@ import { Dispatch, SetStateAction } from "react";
 
 export const FullScreenCard = ({
   fullScreen,
-  setFullScreen,
   isCloseButtonVisible = true,
 }: {
-  fullScreen: null | PodcastType;
-  setFullScreen: Dispatch<SetStateAction<null | PodcastType>>;
+  fullScreen: PodcastType;
   isCloseButtonVisible?: boolean;
 }) => {
-  const { data, isLoading } = useGetFullScreenCardDataQuery(
-    fullScreen?.id as string,
-  );
+  
   const [likeMonologue, {}] = useUpdateMonologueLikeMutation();
   const [dislikeMonologue, {}] = useUpdateMonologueDislikeMutation();
 
@@ -37,14 +33,6 @@ export const FullScreenCard = ({
       {fullScreen && (
         <AnimatePresence>
           <div className="flex flex-4 flex-col items-center justify-center pt-2">
-            {isCloseButtonVisible && (
-              <div
-                onClick={() => setFullScreen(null)}
-                className="mb-2 flex size-8 items-center justify-center self-start rounded-full bg-red-400"
-              >
-                <IconX color="white" size={14} />
-              </div>
-            )}
             <motion.div
               layoutId={`card-image-${fullScreen.id}`}
               className="relative ml-3 h-65 w-65 self-start overflow-hidden rounded-xl"
@@ -94,7 +82,7 @@ export const FullScreenCard = ({
                   Share
                 </button>
                 <button className="flex items-center justify-center gap-1 rounded-2xl text-[5px] text-zinc-400">
-                  {data?.data.isLiked ? (
+                  {fullScreen.isLiked ? (
                     <IconHeartFilled
                       onClick={() => dislikeMonologue(fullScreen.id)}
                       stroke={2}
@@ -119,10 +107,10 @@ export const FullScreenCard = ({
                   <IconBrandGooglePodcasts size={12} /> <p>{0}</p>
                 </div>
                 <div className={cn("flex items-center gap-1", "text-red-600")}>
-                  <IconHeart size={12} /> <p>{data?.data.likeCount}</p>
+                  <IconHeart size={12} /> <p>{fullScreen.likeCount}</p>
                 </div>
                 <p className="text-violet-900">
-                  {data?.data.createdAt.split("T")[0]}
+                  {fullScreen.createdAt.split("T")[0]}
                 </p>
               </motion.div>
             </div>

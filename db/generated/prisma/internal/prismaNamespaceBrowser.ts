@@ -56,7 +56,8 @@ export const ModelName = {
   Episodes: 'Episodes',
   Played: 'Played',
   likedMonologue: 'likedMonologue',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  shareable_link: 'shareable_link'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -183,6 +184,16 @@ export const CommentScalarFieldEnum = {
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const Shareable_linkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  isValid: 'isValid'
+} as const
+
+export type Shareable_linkScalarFieldEnum = (typeof Shareable_linkScalarFieldEnum)[keyof typeof Shareable_linkScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -227,6 +227,7 @@ export type UserWhereInput = {
   image?: Prisma.StringNullableFilter<"User"> | string | null
   credit?: Prisma.IntFilter<"User"> | number
   liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
+  shareable_links?: Prisma.Shareable_linkListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   played?: Prisma.PlayedListRelationFilter
@@ -243,6 +244,7 @@ export type UserOrderByWithRelationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   credit?: Prisma.SortOrder
   liked_categories?: Prisma.SortOrder
+  shareable_links?: Prisma.shareable_linkOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   played?: Prisma.PlayedOrderByRelationAggregateInput
@@ -262,6 +264,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"User"> | string | null
   credit?: Prisma.IntFilter<"User"> | number
   liked_categories?: Prisma.EnumcategoriesNullableListFilter<"User">
+  shareable_links?: Prisma.Shareable_linkListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   played?: Prisma.PlayedListRelationFilter
@@ -306,6 +309,7 @@ export type UserCreateInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -322,6 +326,7 @@ export type UserUncheckedCreateInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -338,6 +343,7 @@ export type UserUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -354,6 +360,7 @@ export type UserUncheckedUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
@@ -546,6 +553,20 @@ export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
 }
 
+export type UserCreateNestedOneWithoutShareable_linksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutShareable_linksInput, Prisma.UserUncheckedCreateWithoutShareable_linksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShareable_linksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutShareable_linksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutShareable_linksInput, Prisma.UserUncheckedCreateWithoutShareable_linksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShareable_linksInput
+  upsert?: Prisma.UserUpsertWithoutShareable_linksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutShareable_linksInput, Prisma.UserUpdateWithoutShareable_linksInput>, Prisma.UserUncheckedUpdateWithoutShareable_linksInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   name?: string | null
@@ -554,6 +575,7 @@ export type UserCreateWithoutAccountsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
@@ -569,6 +591,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
@@ -600,6 +623,7 @@ export type UserUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
@@ -615,6 +639,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
@@ -630,6 +655,7 @@ export type UserCreateWithoutSessionsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
@@ -645,6 +671,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
@@ -676,6 +703,7 @@ export type UserUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
@@ -691,6 +719,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
@@ -706,6 +735,7 @@ export type UserCreateWithoutMonologuesInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -721,6 +751,7 @@ export type UserUncheckedCreateWithoutMonologuesInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -752,6 +783,7 @@ export type UserUpdateWithoutMonologuesInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -767,6 +799,7 @@ export type UserUncheckedUpdateWithoutMonologuesInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
@@ -782,6 +815,7 @@ export type UserCreateWithoutPlayedInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
@@ -797,6 +831,7 @@ export type UserUncheckedCreateWithoutPlayedInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
@@ -828,6 +863,7 @@ export type UserUpdateWithoutPlayedInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
@@ -843,6 +879,7 @@ export type UserUncheckedUpdateWithoutPlayedInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
@@ -858,6 +895,7 @@ export type UserCreateWithoutLikesInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -873,6 +911,7 @@ export type UserUncheckedCreateWithoutLikesInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -904,6 +943,7 @@ export type UserUpdateWithoutLikesInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -919,6 +959,7 @@ export type UserUncheckedUpdateWithoutLikesInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
@@ -934,6 +975,7 @@ export type UserCreateWithoutCommentsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedCreateNestedManyWithoutUserInput
@@ -949,6 +991,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   image?: string | null
   credit?: number
   liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
@@ -980,6 +1023,7 @@ export type UserUpdateWithoutCommentsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
@@ -995,10 +1039,91 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credit?: Prisma.IntFieldUpdateOperationsInput | number
   liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
   likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutShareable_linksInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credit?: number
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutShareable_linksInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  credit?: number
+  liked_categories?: Prisma.UserCreateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  played?: Prisma.PlayedUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutUserInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+  monologues?: Prisma.MonologueUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutShareable_linksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutShareable_linksInput, Prisma.UserUncheckedCreateWithoutShareable_linksInput>
+}
+
+export type UserUpsertWithoutShareable_linksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutShareable_linksInput, Prisma.UserUncheckedUpdateWithoutShareable_linksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutShareable_linksInput, Prisma.UserUncheckedCreateWithoutShareable_linksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutShareable_linksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutShareable_linksInput, Prisma.UserUncheckedUpdateWithoutShareable_linksInput>
+}
+
+export type UserUpdateWithoutShareable_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
+  monologues?: Prisma.MonologueUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutShareable_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  credit?: Prisma.IntFieldUpdateOperationsInput | number
+  liked_categories?: Prisma.UserUpdateliked_categoriesInput | $Enums.categories[]
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  played?: Prisma.PlayedUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.likedMonologueUncheckedUpdateManyWithoutUserNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   monologues?: Prisma.MonologueUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1008,6 +1133,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
  */
 
 export type UserCountOutputType = {
+  shareable_links: number
   accounts: number
   sessions: number
   played: number
@@ -1017,6 +1143,7 @@ export type UserCountOutputType = {
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  shareable_links?: boolean | UserCountOutputTypeCountShareable_linksArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   played?: boolean | UserCountOutputTypeCountPlayedArgs
@@ -1033,6 +1160,13 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountShareable_linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.shareable_linkWhereInput
 }
 
 /**
@@ -1086,6 +1220,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   image?: boolean
   credit?: boolean
   liked_categories?: boolean
+  shareable_links?: boolean | Prisma.User$shareable_linksArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   played?: boolean | Prisma.User$playedArgs<ExtArgs>
@@ -1127,6 +1262,7 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "credit" | "liked_categories", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  shareable_links?: boolean | Prisma.User$shareable_linksArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   played?: boolean | Prisma.User$playedArgs<ExtArgs>
@@ -1141,6 +1277,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    shareable_links: Prisma.$shareable_linkPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     played: Prisma.$PlayedPayload<ExtArgs>[]
@@ -1550,6 +1687,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  shareable_links<T extends Prisma.User$shareable_linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shareable_linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$shareable_linkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   played<T extends Prisma.User$playedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$playedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlayedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1977,6 +2115,30 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.shareable_links
+ */
+export type User$shareable_linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the shareable_link
+   */
+  select?: Prisma.shareable_linkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the shareable_link
+   */
+  omit?: Prisma.shareable_linkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.shareable_linkInclude<ExtArgs> | null
+  where?: Prisma.shareable_linkWhereInput
+  orderBy?: Prisma.shareable_linkOrderByWithRelationInput | Prisma.shareable_linkOrderByWithRelationInput[]
+  cursor?: Prisma.shareable_linkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Shareable_linkScalarFieldEnum | Prisma.Shareable_linkScalarFieldEnum[]
 }
 
 /**

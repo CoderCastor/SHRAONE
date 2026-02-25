@@ -52,6 +52,7 @@ model User {
   image         String?
 
   credit           Int              @default(10)
+  shareable_links shareable_link[]
   accounts         Account[]
   sessions         Session[]
   played           Played[]
@@ -87,9 +88,11 @@ model Monologue {
   user User @relation(fields: [createdBy], references: [id])
 
   createdAt       DateTime         @default(now()) @map("created_at")
+  shareable_links shareable_link[]
   likedMonologues likedMonologue[]
   episodes        Episodes[]
   comments        Comment[]
+
 
   @@unique([title, createdBy])
   @@map("monologues")
@@ -159,6 +162,16 @@ model Comment {
   monologue Monologue @relation(fields: [monologueId], references: [id], onDelete: Cascade)
 
   @@map("comments")
+}
+
+model shareable_link {
+  id String @id @default(uuid())
+  userId String @map("user_id")
+  monologueId String @map("monologue_id")
+  isValid Boolean @map("is_valid")
+
+  user User @relation(fields: [userId],references: [id]) 
+  monologue Monologue @relation(fields: [monologueId],references: [id]) 
 }
 
 enum categories {

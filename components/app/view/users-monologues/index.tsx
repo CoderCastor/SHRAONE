@@ -11,14 +11,20 @@ import { motion } from "motion/react";
 import { CommentBox } from "../common/comment-box";
 import { EpisodesList } from "../common/episodes-list";
 import { FullScreenCard } from "../common/fullscreen-card";
+import { ShimmerCard } from "../../common/shimmer-card";
 
 export const UsersMonologues = () => {
   const { data, isLoading, isError, error } = useGetUsersMonologuesQuery();
   const [fullScreen, setFullScreen] = useState<null | PodcastType>(null);
+  console.log(fullScreen)
   const [fixZindexCardId, setFixZindexCardId] = useState<string | null>(null);
   return (
     <ViewLayout header={"Your Monologues"} showLayoutHeader={!fullScreen}>
       <GridCardBox>
+        {isLoading &&
+                  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+                    <ShimmerCard key={idx} />
+                  ))}
         {data?.data.map((item, idx) => (
           <GridCard
             creater={item.user.name}
@@ -36,6 +42,7 @@ export const UsersMonologues = () => {
             fullScreen={fullScreen}
             fixZindexCardId={fixZindexCardId}
             setFixZindexCardId={setFixZindexCardId}
+
           />
         ))}
       </GridCardBox>

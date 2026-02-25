@@ -37,7 +37,9 @@ export const GET = auth(async (request) => {
             userId: true,
           },
         },
-      },
+      },orderBy : {
+        createdAt : "desc"
+      }
     });
 
     // console.log(monologues)

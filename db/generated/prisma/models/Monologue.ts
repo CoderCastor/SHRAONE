@@ -265,6 +265,7 @@ export type MonologueWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Monologue"> | Date | string
   playedby?: Prisma.PlayedListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shareable_links?: Prisma.Shareable_linkListRelationFilter
   likedMonologues?: Prisma.LikedMonologueListRelationFilter
   episodes?: Prisma.EpisodesListRelationFilter
   comments?: Prisma.CommentListRelationFilter
@@ -283,6 +284,7 @@ export type MonologueOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   playedby?: Prisma.PlayedOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
+  shareable_links?: Prisma.shareable_linkOrderByRelationAggregateInput
   likedMonologues?: Prisma.likedMonologueOrderByRelationAggregateInput
   episodes?: Prisma.EpisodesOrderByRelationAggregateInput
   comments?: Prisma.CommentOrderByRelationAggregateInput
@@ -305,6 +307,7 @@ export type MonologueWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Monologue"> | Date | string
   playedby?: Prisma.PlayedListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  shareable_links?: Prisma.Shareable_linkListRelationFilter
   likedMonologues?: Prisma.LikedMonologueListRelationFilter
   episodes?: Prisma.EpisodesListRelationFilter
   comments?: Prisma.CommentListRelationFilter
@@ -356,6 +359,7 @@ export type MonologueCreateInput = {
   createdAt?: Date | string
   playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
   user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
@@ -373,6 +377,7 @@ export type MonologueUncheckedCreateInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
@@ -390,6 +395,7 @@ export type MonologueUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
@@ -407,6 +413,7 @@ export type MonologueUncheckedUpdateInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
@@ -627,6 +634,20 @@ export type MonologueUpdateOneRequiredWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MonologueUpdateToOneWithWhereWithoutCommentsInput, Prisma.MonologueUpdateWithoutCommentsInput>, Prisma.MonologueUncheckedUpdateWithoutCommentsInput>
 }
 
+export type MonologueCreateNestedOneWithoutShareable_linksInput = {
+  create?: Prisma.XOR<Prisma.MonologueCreateWithoutShareable_linksInput, Prisma.MonologueUncheckedCreateWithoutShareable_linksInput>
+  connectOrCreate?: Prisma.MonologueCreateOrConnectWithoutShareable_linksInput
+  connect?: Prisma.MonologueWhereUniqueInput
+}
+
+export type MonologueUpdateOneRequiredWithoutShareable_linksNestedInput = {
+  create?: Prisma.XOR<Prisma.MonologueCreateWithoutShareable_linksInput, Prisma.MonologueUncheckedCreateWithoutShareable_linksInput>
+  connectOrCreate?: Prisma.MonologueCreateOrConnectWithoutShareable_linksInput
+  upsert?: Prisma.MonologueUpsertWithoutShareable_linksInput
+  connect?: Prisma.MonologueWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MonologueUpdateToOneWithWhereWithoutShareable_linksInput, Prisma.MonologueUpdateWithoutShareable_linksInput>, Prisma.MonologueUncheckedUpdateWithoutShareable_linksInput>
+}
+
 export type MonologueCreateWithoutUserInput = {
   id?: string
   title: string
@@ -638,6 +659,7 @@ export type MonologueCreateWithoutUserInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
@@ -654,6 +676,7 @@ export type MonologueUncheckedCreateWithoutUserInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
@@ -713,6 +736,7 @@ export type MonologueCreateWithoutEpisodesInput = {
   createdAt?: Date | string
   playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
   user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
 }
@@ -729,6 +753,7 @@ export type MonologueUncheckedCreateWithoutEpisodesInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
 }
@@ -761,6 +786,7 @@ export type MonologueUpdateWithoutEpisodesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
 }
@@ -777,6 +803,7 @@ export type MonologueUncheckedUpdateWithoutEpisodesInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
 }
@@ -792,6 +819,7 @@ export type MonologueCreateWithoutPlayedbyInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
@@ -808,6 +836,7 @@ export type MonologueUncheckedCreateWithoutPlayedbyInput = {
   visibility?: $Enums.VISIBILITY
   thumbnailUrl?: string
   createdAt?: Date | string
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
@@ -840,6 +869,7 @@ export type MonologueUpdateWithoutPlayedbyInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
@@ -856,6 +886,7 @@ export type MonologueUncheckedUpdateWithoutPlayedbyInput = {
   visibility?: Prisma.EnumVISIBILITYFieldUpdateOperationsInput | $Enums.VISIBILITY
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
@@ -873,6 +904,7 @@ export type MonologueCreateWithoutLikedMonologuesInput = {
   createdAt?: Date | string
   playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
   user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
 }
@@ -889,6 +921,7 @@ export type MonologueUncheckedCreateWithoutLikedMonologuesInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
 }
@@ -921,6 +954,7 @@ export type MonologueUpdateWithoutLikedMonologuesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
 }
@@ -937,6 +971,7 @@ export type MonologueUncheckedUpdateWithoutLikedMonologuesInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
 }
@@ -953,6 +988,7 @@ export type MonologueCreateWithoutCommentsInput = {
   createdAt?: Date | string
   playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
   user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  shareable_links?: Prisma.shareable_linkCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
 }
@@ -969,6 +1005,7 @@ export type MonologueUncheckedCreateWithoutCommentsInput = {
   thumbnailUrl?: string
   createdAt?: Date | string
   playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  shareable_links?: Prisma.shareable_linkUncheckedCreateNestedManyWithoutMonologueInput
   likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
   episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
 }
@@ -1001,6 +1038,7 @@ export type MonologueUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
 }
@@ -1017,8 +1055,93 @@ export type MonologueUncheckedUpdateWithoutCommentsInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
+}
+
+export type MonologueCreateWithoutShareable_linksInput = {
+  id?: string
+  title: string
+  playedCount?: number | null
+  likeCount?: number | null
+  commentCount?: number | null
+  categories: $Enums.categories
+  visibility?: $Enums.VISIBILITY
+  thumbnailUrl?: string
+  createdAt?: Date | string
+  playedby?: Prisma.PlayedCreateNestedManyWithoutMonologueInput
+  user: Prisma.UserCreateNestedOneWithoutMonologuesInput
+  likedMonologues?: Prisma.likedMonologueCreateNestedManyWithoutMonologueInput
+  episodes?: Prisma.EpisodesCreateNestedManyWithoutMonologueInput
+  comments?: Prisma.CommentCreateNestedManyWithoutMonologueInput
+}
+
+export type MonologueUncheckedCreateWithoutShareable_linksInput = {
+  id?: string
+  title: string
+  createdBy: string
+  playedCount?: number | null
+  likeCount?: number | null
+  commentCount?: number | null
+  categories: $Enums.categories
+  visibility?: $Enums.VISIBILITY
+  thumbnailUrl?: string
+  createdAt?: Date | string
+  playedby?: Prisma.PlayedUncheckedCreateNestedManyWithoutMonologueInput
+  likedMonologues?: Prisma.likedMonologueUncheckedCreateNestedManyWithoutMonologueInput
+  episodes?: Prisma.EpisodesUncheckedCreateNestedManyWithoutMonologueInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutMonologueInput
+}
+
+export type MonologueCreateOrConnectWithoutShareable_linksInput = {
+  where: Prisma.MonologueWhereUniqueInput
+  create: Prisma.XOR<Prisma.MonologueCreateWithoutShareable_linksInput, Prisma.MonologueUncheckedCreateWithoutShareable_linksInput>
+}
+
+export type MonologueUpsertWithoutShareable_linksInput = {
+  update: Prisma.XOR<Prisma.MonologueUpdateWithoutShareable_linksInput, Prisma.MonologueUncheckedUpdateWithoutShareable_linksInput>
+  create: Prisma.XOR<Prisma.MonologueCreateWithoutShareable_linksInput, Prisma.MonologueUncheckedCreateWithoutShareable_linksInput>
+  where?: Prisma.MonologueWhereInput
+}
+
+export type MonologueUpdateToOneWithWhereWithoutShareable_linksInput = {
+  where?: Prisma.MonologueWhereInput
+  data: Prisma.XOR<Prisma.MonologueUpdateWithoutShareable_linksInput, Prisma.MonologueUncheckedUpdateWithoutShareable_linksInput>
+}
+
+export type MonologueUpdateWithoutShareable_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  playedCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  likeCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  commentCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  categories?: Prisma.EnumcategoriesFieldUpdateOperationsInput | $Enums.categories
+  visibility?: Prisma.EnumVISIBILITYFieldUpdateOperationsInput | $Enums.VISIBILITY
+  thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutMonologuesNestedInput
+  likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
+  episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
+}
+
+export type MonologueUncheckedUpdateWithoutShareable_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
+  playedCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  likeCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  commentCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  categories?: Prisma.EnumcategoriesFieldUpdateOperationsInput | $Enums.categories
+  visibility?: Prisma.EnumVISIBILITYFieldUpdateOperationsInput | $Enums.VISIBILITY
+  thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
+  episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
 }
 
 export type MonologueCreateManyUserInput = {
@@ -1044,6 +1167,7 @@ export type MonologueUpdateWithoutUserInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUpdateManyWithoutMonologueNestedInput
@@ -1060,6 +1184,7 @@ export type MonologueUncheckedUpdateWithoutUserInput = {
   thumbnailUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   playedby?: Prisma.PlayedUncheckedUpdateManyWithoutMonologueNestedInput
+  shareable_links?: Prisma.shareable_linkUncheckedUpdateManyWithoutMonologueNestedInput
   likedMonologues?: Prisma.likedMonologueUncheckedUpdateManyWithoutMonologueNestedInput
   episodes?: Prisma.EpisodesUncheckedUpdateManyWithoutMonologueNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutMonologueNestedInput
@@ -1084,6 +1209,7 @@ export type MonologueUncheckedUpdateManyWithoutUserInput = {
 
 export type MonologueCountOutputType = {
   playedby: number
+  shareable_links: number
   likedMonologues: number
   episodes: number
   comments: number
@@ -1091,6 +1217,7 @@ export type MonologueCountOutputType = {
 
 export type MonologueCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   playedby?: boolean | MonologueCountOutputTypeCountPlayedbyArgs
+  shareable_links?: boolean | MonologueCountOutputTypeCountShareable_linksArgs
   likedMonologues?: boolean | MonologueCountOutputTypeCountLikedMonologuesArgs
   episodes?: boolean | MonologueCountOutputTypeCountEpisodesArgs
   comments?: boolean | MonologueCountOutputTypeCountCommentsArgs
@@ -1111,6 +1238,13 @@ export type MonologueCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
  */
 export type MonologueCountOutputTypeCountPlayedbyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PlayedWhereInput
+}
+
+/**
+ * MonologueCountOutputType without action
+ */
+export type MonologueCountOutputTypeCountShareable_linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.shareable_linkWhereInput
 }
 
 /**
@@ -1148,6 +1282,7 @@ export type MonologueSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   playedby?: boolean | Prisma.Monologue$playedbyArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shareable_links?: boolean | Prisma.Monologue$shareable_linksArgs<ExtArgs>
   likedMonologues?: boolean | Prisma.Monologue$likedMonologuesArgs<ExtArgs>
   episodes?: boolean | Prisma.Monologue$episodesArgs<ExtArgs>
   comments?: boolean | Prisma.Monologue$commentsArgs<ExtArgs>
@@ -1199,6 +1334,7 @@ export type MonologueOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type MonologueInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   playedby?: boolean | Prisma.Monologue$playedbyArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  shareable_links?: boolean | Prisma.Monologue$shareable_linksArgs<ExtArgs>
   likedMonologues?: boolean | Prisma.Monologue$likedMonologuesArgs<ExtArgs>
   episodes?: boolean | Prisma.Monologue$episodesArgs<ExtArgs>
   comments?: boolean | Prisma.Monologue$commentsArgs<ExtArgs>
@@ -1216,6 +1352,7 @@ export type $MonologuePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     playedby: Prisma.$PlayedPayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
+    shareable_links: Prisma.$shareable_linkPayload<ExtArgs>[]
     likedMonologues: Prisma.$likedMonologuePayload<ExtArgs>[]
     episodes: Prisma.$EpisodesPayload<ExtArgs>[]
     comments: Prisma.$CommentPayload<ExtArgs>[]
@@ -1627,6 +1764,7 @@ export interface Prisma__MonologueClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   playedby<T extends Prisma.Monologue$playedbyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Monologue$playedbyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlayedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  shareable_links<T extends Prisma.Monologue$shareable_linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Monologue$shareable_linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$shareable_linkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   likedMonologues<T extends Prisma.Monologue$likedMonologuesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Monologue$likedMonologuesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$likedMonologuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   episodes<T extends Prisma.Monologue$episodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Monologue$episodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EpisodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comments<T extends Prisma.Monologue$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Monologue$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2086,6 +2224,30 @@ export type Monologue$playedbyArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PlayedScalarFieldEnum | Prisma.PlayedScalarFieldEnum[]
+}
+
+/**
+ * Monologue.shareable_links
+ */
+export type Monologue$shareable_linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the shareable_link
+   */
+  select?: Prisma.shareable_linkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the shareable_link
+   */
+  omit?: Prisma.shareable_linkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.shareable_linkInclude<ExtArgs> | null
+  where?: Prisma.shareable_linkWhereInput
+  orderBy?: Prisma.shareable_linkOrderByWithRelationInput | Prisma.shareable_linkOrderByWithRelationInput[]
+  cursor?: Prisma.shareable_linkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Shareable_linkScalarFieldEnum | Prisma.Shareable_linkScalarFieldEnum[]
 }
 
 /**

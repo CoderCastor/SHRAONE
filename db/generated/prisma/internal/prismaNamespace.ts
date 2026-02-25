@@ -397,7 +397,8 @@ export const ModelName = {
   Episodes: 'Episodes',
   Played: 'Played',
   likedMonologue: 'likedMonologue',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  shareable_link: 'shareable_link'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "account" | "session" | "user" | "verificationToken" | "monologue" | "episodes" | "played" | "likedMonologue" | "comment"
+    modelProps: "account" | "session" | "user" | "verificationToken" | "monologue" | "episodes" | "played" | "likedMonologue" | "comment" | "shareable_link"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1083,6 +1084,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    shareable_link: {
+      payload: Prisma.$shareable_linkPayload<ExtArgs>
+      fields: Prisma.shareable_linkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.shareable_linkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.shareable_linkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        findFirst: {
+          args: Prisma.shareable_linkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.shareable_linkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        findMany: {
+          args: Prisma.shareable_linkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>[]
+        }
+        create: {
+          args: Prisma.shareable_linkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        createMany: {
+          args: Prisma.shareable_linkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.shareable_linkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>[]
+        }
+        delete: {
+          args: Prisma.shareable_linkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        update: {
+          args: Prisma.shareable_linkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        deleteMany: {
+          args: Prisma.shareable_linkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.shareable_linkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.shareable_linkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>[]
+        }
+        upsert: {
+          args: Prisma.shareable_linkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$shareable_linkPayload>
+        }
+        aggregate: {
+          args: Prisma.Shareable_linkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateShareable_link>
+        }
+        groupBy: {
+          args: Prisma.shareable_linkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Shareable_linkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.shareable_linkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Shareable_linkCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1232,6 +1307,16 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
+export const Shareable_linkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  monologueId: 'monologueId',
+  isValid: 'isValid'
+} as const
+
+export type Shareable_linkScalarFieldEnum = (typeof Shareable_linkScalarFieldEnum)[keyof typeof Shareable_linkScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1347,6 +1432,13 @@ export type ListEnumSTATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1455,6 +1547,7 @@ export type GlobalOmitConfig = {
   played?: Prisma.PlayedOmit
   likedMonologue?: Prisma.likedMonologueOmit
   comment?: Prisma.CommentOmit
+  shareable_link?: Prisma.shareable_linkOmit
 }
 
 /* Types for Logging */

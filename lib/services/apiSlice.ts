@@ -32,7 +32,8 @@ export const api = createApi({
     "Comments",
     "TrendingMonologues",
     "RecommendedMonologues",
-    "LikedMonologues"
+    "LikedMonologues",
+    "FullScreenData",
   ],
   endpoints: (builder) => ({
     getUsersMonologues: builder.query<PodcastResponse, void>({
@@ -43,26 +44,21 @@ export const api = createApi({
       query: () => "/monologues/trending",
       providesTags: ["TrendingMonologues"],
     }),
-
     getRecommendedMonologues: builder.query<PodcastResponse, void>({
       query: () => "/monologues/recommended",
       providesTags: ["RecommendedMonologues"],
     }),
-
     getLikedMonologues: builder.query<PodcastResponse, void>({
       query: () => "/monologues/liked",
       providesTags: ["LikedMonologues"],
     }),
-
     getMonologueById: builder.query<GetMonologueResponse, string>({
       query: (id) => `/monologues/episodes/${id}`,
       providesTags: (result, error, id) => [{ type: "Monologue", id }],
     }),
-
     getMonologueEpisodeStatus: builder.query<EpisodePolling, string>({
       query: (id) => `/monologues/status/${id}`,
     }),
-
     generateNewMonologue: builder.mutation<any, { idea: string }>({
       query: (input) => ({
         url: "/monologues/generate",
@@ -70,7 +66,6 @@ export const api = createApi({
         body: input,
       }),
     }),
-
     generateNextEpisode: builder.mutation<
       generateNextEpisodeResponseType,
       { monologueId: string; number: number }
@@ -103,7 +98,6 @@ export const api = createApi({
       query: (id) => `/monologues/comments/${id}`,
       providesTags: (result, error, id) => [{ type: "Comments", id }],
     }),
-
     postCommentOnMonologue: builder.mutation<
       { success: boolean },
       { comment: string; id: string }
@@ -114,15 +108,20 @@ export const api = createApi({
         body: { comment: input.comment },
       }),
     }),
-
-    updateTrendingMonologueLike: builder.mutation<void, string>({
+    updateMonologueLike: builder.mutation<void, string>({
       query: (id) => ({
-        url: `/monologues/trending/like/${id}`,
+        url: `/monologues/like/${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["TrendingMonologues",],
+      invalidatesTags: [
+        "TrendingMonologues",
+        "LikedMonologues",
+        "UsersMonologues",
+        "RecommendedMonologues",
+        "FullScreenData",
+      ],
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        const patchResult = dispatch(
+        const patchTrendingMonologues = dispatch(
           api.util.updateQueryData(
             "getTrendingMonologues",
             undefined,
@@ -135,22 +134,80 @@ export const api = createApi({
           ),
         );
 
+        const patchUsersMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = true;
+              }
+            },
+          ),
+        );
+
+        const patchRecommendedMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = true;
+              }
+            },
+          ),
+        );
+
+        const patchLikedMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = true;
+              }
+            },
+          ),
+        );
+
+        const patchUpdateFullscreenCardData = dispatch(
+          api.util.updateQueryData(
+            "getFullScreenCardData",
+            id,
+            (draft: GetMonologueResponse) => {
+              draft.data.isLiked = true;
+            },
+          ),
+        );
+
         try {
           await queryFulfilled;
         } catch {
-          patchResult.undo();
+          patchTrendingMonologues.undo();
+          patchLikedMonologues.undo();
+          patchRecommendedMonologues.undo();
+          patchUsersMonologues.undo();
+          patchUpdateFullscreenCardData.undo();
         }
       },
     }),
-
-    updateTrendingMonologueDislike: builder.mutation<void, string>({
+    updateMonologueDislike: builder.mutation<void, string>({
       query: (id) => ({
-        url: `/monologues/trending/dislike/${id}`,
+        url: `/monologues/dislike/${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["TrendingMonologues"],
+      invalidatesTags: [
+        "TrendingMonologues",
+        "UsersMonologues",
+        "LikedMonologues",
+        "RecommendedMonologues",
+        "FullScreenData",
+      ],
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        const patchResult = dispatch(
+        const patchTrendingMonologues = dispatch(
           api.util.updateQueryData(
             "getTrendingMonologues",
             undefined,
@@ -163,80 +220,84 @@ export const api = createApi({
           ),
         );
 
+        const patchUsersMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = false;
+              }
+            },
+          ),
+        );
+
+        const patchRecommendedMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = false;
+              }
+            },
+          ),
+        );
+
+        const patchLikedMonologues = dispatch(
+          api.util.updateQueryData(
+            "getTrendingMonologues",
+            undefined,
+            (draft: PodcastResponse) => {
+              const monologue = draft.data.find((m) => m.id === id);
+              if (monologue) {
+                monologue.isLiked = false;
+              }
+            },
+          ),
+        );
+
+        const patchUpdateFullscreenCardData = dispatch(
+          api.util.updateQueryData(
+            "getFullScreenCardData",
+            id,
+            (draft: GetMonologueResponse) => {
+              draft.data.isLiked = false;
+            },
+          ),
+        );
+
         try {
           await queryFulfilled;
         } catch {
-          patchResult.undo();
+          patchTrendingMonologues.undo();
+          patchLikedMonologues.undo();
+          patchRecommendedMonologues.undo();
+          patchUsersMonologues.undo();
+          patchUpdateFullscreenCardData.undo();
         }
       },
     }),
-    // addTask: builder.mutation({
-    //   query: (task) => ({
-    //     url: "/tasks",
-    //     method: "POST",
-    //     body: task,
-    //   }),
-    //   invalidatesTags: ["Tasks"],
-    //   async onQueryStarted(task, { dispatch, queryFulfilled }) {
-    //     const patchResult = dispatch(
-    //       api.util.updateQueryData("getTasks", undefined, (draft) => {
-    //         draft.unshift({ id: crypto.randomUUID(), ...task });
-    //       }),
-    //     );
-
-    //     try {
-    //       await queryFulfilled;
-    //     } catch {
-    //       patchResult.undo();
-    //     }
-    //   },
-    // }),
-    // updateTask: builder.mutation({
-    //   query: ({ id, ...updatedTask }) => ({
-    //     url: `/tasks/${id}`,
-    //     method: "PATCH",
-    //     body: updatedTask,
-    //   }),
-    //   invalidatesTags: ["Tasks"],
-    //   async onQueryStarted(
-    //     { id, ...updatedTask },
-    //     { dispatch, queryFulfilled },
-    //   ) {
-    //     const patchResult = dispatch(
-    //       api.util.updateQueryData("getTasks", undefined, (tasksList) => {
-    //         const taskIndex = tasksList.findIndex((el) => el.id === id);
-    //         tasksList[taskIndex] = { ...tasksList[taskIndex], ...updatedTask };
-    //       }),
-    //     );
-
-    //     try {
-    //       await queryFulfilled;
-    //     } catch {
-    //       patchResult.undo();
-    //     }
-    //   },
-    // }),
-    // deleteTask: builder.mutation({
-    //   query: (id) => ({
-    //     url: `/tasks/${id}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["Tasks"],
-    //   async onQueryStarted(id, { dispatch, queryFulfilled }) {
-    //     const patchResult = dispatch(
-    //       api.util.updateQueryData("getTasks", undefined, (tasksList) => {
-    //         const taskIndex = tasksList.findIndex((el) => el.id === id);
-    //         tasksList.splice(taskIndex, 1);
-    //       }),
-    //     );
-
-    //     try {
-    //       await queryFulfilled;
-    //     } catch {
-    //       patchResult.undo();
-    //     }
-    //   },
-    // }),
+    getFullScreenCardData: builder.query<GetMonologueResponse, string>({
+      query: (id) => `/monologues/card/${id}`,
+      providesTags: (result, error, id) => [{ type: "FullScreenData", id }],
+    }),
+    generateShareableLink: builder.mutation<
+      {
+        success: boolean;
+        data: {
+          link: string;
+        };
+      },
+      string
+    >({
+      query: (input) => ({
+        url: `/link/generate/${input}`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -250,8 +311,10 @@ export const {
   useGetCreditBalanceQuery,
   useGetCommentsByMonologueIdQuery,
   usePostCommentOnMonologueMutation,
-  useUpdateTrendingMonologueDislikeMutation,
-  useUpdateTrendingMonologueLikeMutation,
+  useUpdateMonologueLikeMutation,
+  useUpdateMonologueDislikeMutation,
   useGetRecommendedMonologuesQuery,
-  useGetLikedMonologuesQuery
+  useGetLikedMonologuesQuery,
+  useGetFullScreenCardDataQuery,
+  useGenerateShareableLinkMutation,
 } = api;

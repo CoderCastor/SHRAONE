@@ -12,19 +12,38 @@ export const PATCH = auth(
           { status: 401 },
         );
 
-      const res = await prisma.likedMonologue.delete({
-        where: {
-          userId_monologueId: {
-            userId: request.auth.user?.id as string,
+      const res = await prisma.$transaction(async (tx) => {        
+        await tx.likedMonologue.create({
+          data: {
             monologueId: id,
+            userId: request.auth.user?.id as string,
           },
-        },
+        });
+
+        await tx.monologue.update({
+          data: {
+            likeCount: {
+              increment: 1,
+            },
+          },
+          where: {
+            id : id as string,
+          }
+        });
       });
+
+      // const res = await prisma.likedMonologue.create({
+      //   data: {
+      //     monologueId: id,
+      //     userId: request.auth.user?.id as string,
+      //   },
+      // });
 
       return NextResponse.json({
         success: true,
       });
     } catch (e) {
+      console.log(e)
       return NextResponse.json({
         success: false,
         error: "something went wrong",

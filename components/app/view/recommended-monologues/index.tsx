@@ -11,6 +11,7 @@ import { motion } from "motion/react";
 import { CommentBox } from "../common/comment-box";
 import { EpisodesList } from "../common/episodes-list";
 import { FullScreenCard } from "../common/fullscreen-card";
+import { ShimmerCard } from "../../common/shimmer-card";
 
 export const RecommendedMonologues = () => {
   const { data, isLoading, isError, error } = useGetTrendingMonologuesQuery();
@@ -20,6 +21,10 @@ export const RecommendedMonologues = () => {
   return (
     <ViewLayout header={"Recommended"} showLayoutHeader={!fullScreen}>
           <GridCardBox>
+            {isLoading &&
+                      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, idx) => (
+                        <ShimmerCard key={idx} />
+                      ))}
         {data?.data.map((item, idx) => (
           <GridCard
             creater={item.user.name}
@@ -37,6 +42,7 @@ export const RecommendedMonologues = () => {
             fullScreen={fullScreen}
             fixZindexCardId={fixZindexCardId}
             setFixZindexCardId={setFixZindexCardId}
+
           />
         ))}
       </GridCardBox>

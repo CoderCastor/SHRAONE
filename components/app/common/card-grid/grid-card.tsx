@@ -13,8 +13,9 @@ import { ActionDispatch, Dispatch, SetStateAction } from "react";
 import { PodcastType } from "@/types/monologue";
 import { motion } from "motion/react";
 import {
-  useUpdateTrendingMonologueDislikeMutation,
-  useUpdateTrendingMonologueLikeMutation,
+  useGenerateShareableLinkMutation,
+  useUpdateMonologueDislikeMutation,
+  useUpdateMonologueLikeMutation,
 } from "@/lib/services/apiSlice";
 export interface GridCardProps {
   thumbnail_image_url?: string;
@@ -47,8 +48,9 @@ export const GridCard = ({
   setFixZindexCardId,
   fixZindexCardId,
 }: GridCardProps) => {
-  const [likeMonologue, {}] = useUpdateTrendingMonologueLikeMutation();
-  const [dislikeMonologue, {}] = useUpdateTrendingMonologueDislikeMutation();
+  const [generateLink,{}] = useGenerateShareableLinkMutation()
+  const [likeMonologue, {}] = useUpdateMonologueLikeMutation();
+  const [dislikeMonologue, {}] = useUpdateMonologueDislikeMutation();
 
   return (
     <motion.div
@@ -94,7 +96,7 @@ export const GridCard = ({
             <IconPlayerPlayFilled stroke={2} size={10} />
             Play
           </button>
-          <button className="flex items-center justify-center gap-1 rounded-2xl border-[0.1px] border-purple-500 px-2 py-1 text-[8px] font-semibold text-purple-500">
+          <button onClick={()=>generateLink(item.id)} className="flex items-center justify-center gap-1 rounded-2xl border-[0.1px] border-purple-500 px-2 py-1 text-[8px] font-semibold text-purple-500">
             <IconShare stroke={2} size={10} />
             Share
           </button>
