@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/tejasshinde/BigProjects/shraone/db/generated/prisma",
+      "value": "/home/tejasshinde935/SHRAONE/db/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -31,12 +31,12 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/tejasshinde/BigProjects/shraone/prisma/schema.prisma",
+    "sourceFilePath": "/home/tejasshinde935/SHRAONE/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
